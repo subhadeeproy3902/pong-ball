@@ -31,10 +31,10 @@ builds:
 
 archives:
   - id: default
-    format: tar.gz
+    formats: [tar.gz]
     format_overrides:
       - goos: windows
-        format: zip
+        formats: [zip]
     name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
     files:
       - README.md
@@ -85,9 +85,9 @@ nfpms:
     homepage: https://github.com/subhadeeproy3902/paddle-ball
     maintainer: "Subhadeep Roy <subhadeep3902@gmail.com>"
     description: |-
-      A physics-based neon terminal paddleball game.
-      Smooth delta-time physics, particle effects, power-ups,
-      persistent score history, and four visual themes.
+      A minimalist physics-based terminal paddleball game.
+      Sub-stepped collision physics, a spring-driven paddle, power-ups,
+      persistent score history, and five restrained themes.
     license: MIT
     formats:
       - deb
@@ -99,20 +99,10 @@ nfpms:
       - src: ./README.md
         dst: /usr/share/doc/paddle-ball/README.md
 
-snapcrafts:
-  - name: paddle-ball
-    publish: false
-    summary: "🏓 Neon terminal paddleball game"
-    description: |
-      Physics-based paddleball for the terminal. Delta-time ball movement,
-      particle effects, power-ups, four visual themes, and persistent score
-      history. Classic, Arcade, Zen, and Time Trial modes.
-    grade: stable
-    confinement: strict
-    license: MIT
-    apps:
-      paddle-ball:
-        plugs: ["home", "network"]
+# Note: snap packaging was removed from the release pipeline — building a .snap
+# requires the `snapcraft` toolchain, which isn't present on the GitHub runner
+# and would fail the release. Re-add a `snapcrafts:` block with a snapcraft
+# install step if you want snaps.
 
 dockers:
   - image_templates:

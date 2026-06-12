@@ -61,22 +61,25 @@ else
 fi
 
 # ── install ─────────────────────────────────────────────────────────────────
-BIN_PATH="$TMP/$BINARY"
-[ ! -f "$BIN_PATH" ] && BIN_PATH=$(find "$TMP" -name "$BINARY" -type f | head -1)
+BIN_NAME="$BINARY"
+[ "$OS" = "windows" ] && BIN_NAME="${BINARY}.exe"
+BIN_PATH="$TMP/$BIN_NAME"
+[ ! -f "$BIN_PATH" ] && BIN_PATH=$(find "$TMP" -name "$BIN_NAME" -type f | head -1)
 [ -z "$BIN_PATH" ] && error "Binary not found in archive"
 
 chmod +x "$BIN_PATH"
 
+DEST="$INSTALL_DIR/$BIN_NAME"
 if [ -w "$INSTALL_DIR" ]; then
-  mv "$BIN_PATH" "$INSTALL_DIR/$BINARY"
+  mv "$BIN_PATH" "$DEST"
 else
   info "Requesting sudo to install to $INSTALL_DIR…"
-  sudo mv "$BIN_PATH" "$INSTALL_DIR/$BINARY"
+  sudo mv "$BIN_PATH" "$DEST"
 fi
 
 # ── verify ──────────────────────────────────────────────────────────────────
-INSTALLED_VER="$("$INSTALL_DIR/$BINARY" version 2>/dev/null | head -1 || echo '?')"
-success "Installed ${BOLD}${BINARY}${RESET} → ${INSTALL_DIR}/${BINARY}"
+INSTALLED_VER="$("$DEST" version 2>/dev/null | head -1 || echo '?')"
+success "Installed ${BOLD}${BINARY}${RESET} → ${DEST}"
 success "Version: ${INSTALLED_VER}"
 echo
 echo -e "  Run ${CYAN}paddle-ball${RESET} to play!"

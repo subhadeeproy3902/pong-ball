@@ -1,0 +1,6 @@
+# Keep shell scripts LF so `curl | bash` works on Linux/macOS regardless of the
+# committer's OS. Go and YAML tooling is line-ending agnostic, but scripts are not.
+*.sh   text eol=lf
+install.sh text eol=lf
+Makefile text eol=lf
+Dockerfile text eol=lf
