@@ -31,13 +31,7 @@
 curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash
 ```
 
-### Homebrew (macOS / Linux)
-```bash
-brew tap subhadeeproy3902/paddle-ball
-brew install paddle-ball
-```
-
-### Go install
+### Go install (any platform)
 ```bash
 go install github.com/subhadeeproy3902/paddle-ball@latest
 ```
@@ -47,7 +41,16 @@ go install github.com/subhadeeproy3902/paddle-ball@latest
 docker run --rm -it ghcr.io/subhadeeproy3902/paddle-ball:latest
 ```
 
-Also available via apt/rpm/apk packages and Scoop — see the [releases page](https://github.com/subhadeeproy3902/paddle-ball/releases).
+### Linux packages / Windows
+Grab a prebuilt binary, `.deb`/`.rpm`/`.apk`, or the Windows `.zip` from the
+[releases page](https://github.com/subhadeeproy3902/paddle-ball/releases).
+
+### Homebrew
+```bash
+brew tap subhadeeproy3902/paddle-ball
+brew install paddle-ball
+```
+> Homebrew requires the tap to be set up first — see [SETUP.md §6](SETUP.md).
 
 ---
 
