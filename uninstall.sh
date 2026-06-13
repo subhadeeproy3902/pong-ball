@@ -16,7 +16,7 @@ echo "  - saved scores & settings  (~/.pong-ball)"
 echo "  - cached sound files       (\${TMPDIR:-/tmp}/pong-ball-sfx)"
 echo
 printf "Remove everything? (Y/N) "
-# Read from the terminal even when run via 'curl ... | bash'.
+# Read from the terminal even when run via 'curl ... | sh'.
 read -r ans </dev/tty
 
 case "$ans" in
