@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/subhadeeproy3902/paddle-ball/ui"
+	"github.com/subhadeeproy3902/pong-ball/ui"
 )
 
 // cell is one character slot in the play-area grid.
@@ -78,7 +78,7 @@ func (m Model) viewTitle(t *ui.Theme) string {
 		logo = gradientArt(titleWordmark, t.Accent, t.Phase[4], off)
 	} else {
 		logo = ui.SB(t.Ball).Render("●  ") +
-			ui.SB(t.Accent).Render(spaced("PADDLE BALL")) +
+			ui.SB(t.Accent).Render(spaced("PONG")) +
 			ui.SB(t.Ball).Render("  ●")
 	}
 

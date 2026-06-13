@@ -1,4 +1,4 @@
-module github.com/subhadeeproy3902/paddle-ball
+module github.com/subhadeeproy3902/pong-ball
 
 go 1.21
 

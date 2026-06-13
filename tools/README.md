@@ -12,7 +12,7 @@ need Python + Pillow and a headless Chrome. Outputs (`*.png`, `terminal.html`,
    ```
 2. Convert it to a styled terminal window, then screenshot it:
    ```bash
-   python tools/shot.py game/zz_play.ansi "paddle-ball — arcade" tools/terminal.html
+   python tools/shot.py game/zz_play.ansi "pong-ball — arcade" tools/terminal.html
    chrome --headless=new --force-device-scale-factor=2 --window-size=950,610 \
      --default-background-color=00000000 --screenshot=assets/screenshot.png tools/terminal.html
    ```

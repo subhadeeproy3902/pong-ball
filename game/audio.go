@@ -43,7 +43,7 @@ var (
 // at startup) since the platform backend may pre-open the files.
 func initAudio() {
 	audioOnce.Do(func() {
-		dir := filepath.Join(os.TempDir(), "paddle-ball-sfx")
+		dir := filepath.Join(os.TempDir(), "pong-ball-sfx")
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			return
 		}

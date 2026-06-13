@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- ── primary ── -->
-<title>paddle-ball — a minimalist terminal paddleball game</title>
-<meta name="description" content="paddle-ball is a minimalist, physics-based paddleball game for the terminal: sub-stepped collisions that never glitch, a spring-driven paddle you steer with keys or mouse, five quiet themes, four modes, sound, and a persistent score history. One Go binary, installable on macOS, Linux, and Windows." />
-<meta name="keywords" content="paddle-ball, terminal game, TUI game, paddleball, Go game, Bubble Tea, CLI game, terminal paddle game, ascii game, command line game, retro arcade terminal" />
+<title>pong-ball — a minimalist terminal Pong game</title>
+<meta name="description" content="pong-ball is a minimalist, physics-based Pong game for the terminal: sub-stepped collisions that never glitch, a spring-driven paddle you steer with keys or mouse, five quiet themes, four modes, sound, and a persistent score history. One Go binary, installable on macOS, Linux, and Windows." />
+<meta name="keywords" content="pong-ball, terminal game, TUI game, Pong, Go game, Bubble Tea, CLI game, terminal paddle game, ascii game, command line game, retro arcade terminal" />
 <meta name="author" content="Subhadeep Roy" />
 <meta name="theme-color" content="#181715" />
 <meta name="color-scheme" content="dark" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<link rel="canonical" href="https://paddleball.mvp-subha.me/" />
+<link rel="canonical" href="https://pongball.mvp-subha.me/" />
 
 <!-- ── icons ── -->
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
@@ -21,21 +21,21 @@
 
 <!-- ── Open Graph (SIO) ── -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="paddle-ball" />
-<meta property="og:title" content="paddle-ball — a minimalist terminal paddleball game" />
-<meta property="og:description" content="Physics-based paddleball for your terminal: sub-stepped collisions, a spring-driven paddle, five quiet themes, four modes. One binary, any OS." />
-<meta property="og:url" content="https://paddleball.mvp-subha.me/" />
-<meta property="og:image" content="https://paddleball.mvp-subha.me/assets/og.png" />
+<meta property="og:site_name" content="pong-ball" />
+<meta property="og:title" content="pong-ball — a minimalist terminal Pong game" />
+<meta property="og:description" content="Physics-based Pong for your terminal: sub-stepped collisions, a spring-driven paddle, five quiet themes, four modes. One binary, any OS." />
+<meta property="og:url" content="https://pongball.mvp-subha.me/" />
+<meta property="og:image" content="https://pongball.mvp-subha.me/assets/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="paddle-ball — a minimalist terminal paddleball game" />
+<meta property="og:image:alt" content="pong-ball — a minimalist terminal Pong game" />
 
 <!-- ── Twitter / X card ── -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="paddle-ball — a minimalist terminal paddleball game" />
-<meta name="twitter:description" content="Physics-based paddleball for your terminal. Sub-stepped collisions, spring paddle, five themes, four modes. One binary." />
-<meta name="twitter:image" content="https://paddleball.mvp-subha.me/assets/og.png" />
-<meta name="twitter:image:alt" content="paddle-ball — a minimalist terminal paddleball game" />
+<meta name="twitter:title" content="pong-ball — a minimalist terminal Pong game" />
+<meta name="twitter:description" content="Physics-based Pong for your terminal. Sub-stepped collisions, spring paddle, five themes, four modes. One binary." />
+<meta name="twitter:image" content="https://pongball.mvp-subha.me/assets/og.png" />
+<meta name="twitter:image:alt" content="pong-ball — a minimalist terminal Pong game" />
 <meta name="twitter:creator" content="@mvp_Subha" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -47,16 +47,16 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "paddle-ball",
+  "name": "pong-ball",
   "applicationCategory": "GameApplication",
   "applicationSubCategory": "Terminal / CLI game",
   "operatingSystem": "macOS, Linux, Windows",
-  "description": "A minimalist, physics-based paddleball game for the terminal with sub-stepped collisions, a spring-driven paddle, five themes, four modes, sound, and persistent score history.",
-  "url": "https://paddleball.mvp-subha.me/",
-  "downloadUrl": "https://github.com/subhadeeproy3902/paddle-ball/releases",
+  "description": "A minimalist, physics-based Pong game for the terminal with sub-stepped collisions, a spring-driven paddle, five themes, four modes, sound, and persistent score history.",
+  "url": "https://pongball.mvp-subha.me/",
+  "downloadUrl": "https://github.com/subhadeeproy3902/pong-ball/releases",
   "softwareVersion": "1.0.0",
-  "license": "https://github.com/subhadeeproy3902/paddle-ball/blob/main/LICENSE",
-  "image": "https://paddleball.mvp-subha.me/assets/og.png",
+  "license": "https://github.com/subhadeeproy3902/pong-ball/blob/main/LICENSE",
+  "image": "https://pongball.mvp-subha.me/assets/og.png",
   "author": { "@type": "Person", "name": "Subhadeep Roy", "url": "https://github.com/subhadeeproy3902" },
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "programmingLanguage": "Go"
@@ -69,14 +69,14 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is paddle-ball?",
-      "acceptedAnswer": { "@type": "Answer", "text": "paddle-ball is a free, open-source, minimalist paddleball game that runs in your terminal. It uses sub-stepped collision physics, a spring-driven paddle you control with the keyboard or mouse, five restrained themes, and four game modes." } },
-    { "@type": "Question", "name": "How do I install paddle-ball?",
-      "acceptedAnswer": { "@type": "Answer", "text": "On macOS or Linux run: curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash. You can also use Homebrew (brew install paddle-ball), Go (go install github.com/subhadeeproy3902/paddle-ball@latest), Docker, or download a prebuilt binary from the releases page." } },
+    { "@type": "Question", "name": "What is pong-ball?",
+      "acceptedAnswer": { "@type": "Answer", "text": "pong-ball is a free, open-source, minimalist Pong game that runs in your terminal. It uses sub-stepped collision physics, a spring-driven paddle you control with the keyboard or mouse, five restrained themes, and four game modes." } },
+    { "@type": "Question", "name": "How do I install pong-ball?",
+      "acceptedAnswer": { "@type": "Answer", "text": "On macOS or Linux run: curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | bash. You can also use Homebrew (brew install pong-ball), Go (go install github.com/subhadeeproy3902/pong-ball@latest), Docker, or download a prebuilt binary from the releases page." } },
     { "@type": "Question", "name": "Which operating systems are supported?",
-      "acceptedAnswer": { "@type": "Answer", "text": "paddle-ball ships prebuilt binaries for macOS, Linux, and Windows on both amd64 and arm64, plus .deb/.rpm/.apk packages and a Docker image." } },
-    { "@type": "Question", "name": "Is paddle-ball free and open source?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. paddle-ball is MIT-licensed and free. The source is on GitHub at github.com/subhadeeproy3902/paddle-ball." } }
+      "acceptedAnswer": { "@type": "Answer", "text": "pong-ball ships prebuilt binaries for macOS, Linux, and Windows on both amd64 and arm64, plus .deb/.rpm/.apk packages and a Docker image." } },
+    { "@type": "Question", "name": "Is pong-ball free and open source?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. pong-ball is MIT-licensed and free. The source is on GitHub at github.com/subhadeeproy3902/pong-ball." } }
   ]
 }
 </script>
@@ -302,12 +302,12 @@
 
 <nav>
   <div class="nav-in">
-    <a class="brand" href="#top"><img class="mark" src="/assets/logo.svg" alt="paddle-ball logo" width="26" height="26" /> paddle-ball</a>
+    <a class="brand" href="#top"><img class="mark" src="/assets/logo.svg" alt="pong-ball logo" width="26" height="26" /> pong-ball</a>
     <div class="nav-links">
       <a href="#sound">Sound</a>
       <a href="#features">Features</a>
       <a href="#install">Install</a>
-      <a class="gh" href="https://github.com/subhadeeproy3902/paddle-ball">GitHub ↗</a>
+      <a class="gh" href="https://github.com/subhadeeproy3902/pong-ball">GitHub ↗</a>
     </div>
   </div>
 </nav>
@@ -316,7 +316,7 @@
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">A terminal paddle game</span>
-      <h1>Quiet, fast, and<br />honest <em>paddleball.</em></h1>
+      <h1>Quiet, fast, and<br />honest <em>Pong.</em></h1>
       <p class="lede">
         A physics-based paddle game that lives in your terminal. Sub-stepped
         collisions that never glitch, five restrained themes, and a paddle that
@@ -325,20 +325,20 @@
 
       <div class="cmd">
         <span class="prompt">$</span>
-        <code id="install-cmd">curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash</code>
+        <code id="install-cmd">curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | bash</code>
         <button id="copy-btn" aria-label="Copy install command">Copy</button>
       </div>
 
       <div class="cta-row">
         <a class="btn btn-primary" href="#install">Install ↓</a>
-        <a class="btn btn-ghost" href="https://github.com/subhadeeproy3902/paddle-ball">View source</a>
+        <a class="btn btn-ghost" href="https://github.com/subhadeeproy3902/pong-ball">View source</a>
       </div>
     </div>
 
     <div class="term" aria-hidden="true">
       <div class="term-bar">
         <div class="dots"><i></i><i></i><i></i></div>
-        <span class="term-title">paddle-ball — play</span>
+        <span class="term-title">pong-ball — play</span>
       </div>
       <canvas id="demo" width="560" height="360"></canvas>
     </div>
@@ -396,8 +396,8 @@
     </div>
     <figure class="shot">
       <img src="/assets/screenshot.png" width="1900" height="1120" loading="lazy"
-        alt="paddle-ball running in a terminal: Arcade mode showing score 128, phase 4 Blazing, three lives, a 17 streak, the ball and its trail, the coral paddle, and an active Fire Paddle power-up." />
-      <figcaption>paddle-ball · Arcade · Claude theme</figcaption>
+        alt="pong-ball running in a terminal: Arcade mode showing score 128, phase 4 Blazing, three lives, a 17 streak, the ball and its trail, the coral paddle, and an active Fire Paddle power-up." />
+      <figcaption>pong-ball · Arcade · Claude theme</figcaption>
     </figure>
   </div>
 </section>
@@ -456,59 +456,59 @@
     <div class="os-label">macOS · Linux</div>
     <div class="install-grid">
       <div class="block">
-        <div class="bt">curl <button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash">Copy</button></div>
+        <div class="bt">curl <button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | bash">Copy</button></div>
         <pre><code><span class="c"># one-line install</span>
-curl -fsSL https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/paddle-ball/main/install.sh | bash</code></pre>
+curl -fsSL https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/install.sh | bash</code></pre>
       </div>
       <div class="block">
-        <div class="bt">Homebrew <button class="copy" data-copy="brew install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/Formula/paddle-ball.rb">Copy</button></div>
-        <pre><code>brew install https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/paddle-ball/main/Formula/paddle-ball.rb</code></pre>
+        <div class="bt">Homebrew <button class="copy" data-copy="brew install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/Formula/pong-ball.rb">Copy</button></div>
+        <pre><code>brew install https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/Formula/pong-ball.rb</code></pre>
       </div>
     </div>
 
     <div class="os-label">Windows</div>
     <div class="install-grid">
       <div class="block">
-        <div class="bt">Scoop <button class="copy" data-copy="scoop install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/bucket/paddle-ball.json">Copy</button></div>
-        <pre><code>scoop install https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/paddle-ball/main/bucket/paddle-ball.json</code></pre>
+        <div class="bt">Scoop <button class="copy" data-copy="scoop install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/bucket/pong-ball.json">Copy</button></div>
+        <pre><code>scoop install https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/bucket/pong-ball.json</code></pre>
       </div>
       <div class="block">
-        <div class="bt">WinGet <button class="copy" data-copy="winget install --manifest manifests/s/subhadeeproy3902/paddle-ball/1.0.5">Copy</button></div>
+        <div class="bt">WinGet <button class="copy" data-copy="winget install --manifest manifests/s/subhadeeproy3902/pong-ball/1.0.5">Copy</button></div>
         <pre><code><span class="c"># clone the repo, then point at the version folder</span>
-winget install --manifest <span class="a">manifests/s/subhadeeproy3902/paddle-ball/1.0.5</span></code></pre>
+winget install --manifest <span class="a">manifests/s/subhadeeproy3902/pong-ball/1.0.5</span></code></pre>
       </div>
       <div class="block">
-        <div class="bt">PowerShell <button class="copy" data-copy="irm https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.ps1 | iex">Copy</button></div>
-        <pre><code>irm https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/paddle-ball/main/install.ps1 | iex</code></pre>
+        <div class="bt">PowerShell <button class="copy" data-copy="irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.ps1 | iex">Copy</button></div>
+        <pre><code>irm https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/install.ps1 | iex</code></pre>
       </div>
       <div class="block">
         <div class="bt">Prebuilt</div>
-        <pre><code><span class="c"># grab paddle-ball_windows_amd64.zip</span>
-<a href="https://github.com/subhadeeproy3902/paddle-ball/releases" style="color:var(--accent)">github.com/…/releases</a></code></pre>
+        <pre><code><span class="c"># grab pong-ball_windows_amd64.zip</span>
+<a href="https://github.com/subhadeeproy3902/pong-ball/releases" style="color:var(--accent)">github.com/…/releases</a></code></pre>
       </div>
     </div>
 
     <div class="os-label">Any platform</div>
     <div class="install-grid">
       <div class="block">
-        <div class="bt">Go <button class="copy" data-copy="go install github.com/subhadeeproy3902/paddle-ball@latest">Copy</button></div>
-        <pre><code>go install github.com/subhadeeproy3902/paddle-ball@latest</code></pre>
+        <div class="bt">Go <button class="copy" data-copy="go install github.com/subhadeeproy3902/pong-ball@latest">Copy</button></div>
+        <pre><code>go install github.com/subhadeeproy3902/pong-ball@latest</code></pre>
       </div>
       <div class="block">
-        <div class="bt">Docker <button class="copy" data-copy="docker run --rm -it ghcr.io/subhadeeproy3902/paddle-ball:latest">Copy</button></div>
-        <pre><code>docker run --rm -it ghcr.io/subhadeeproy3902/paddle-ball:latest</code></pre>
+        <div class="bt">Docker <button class="copy" data-copy="docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest">Copy</button></div>
+        <pre><code>docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest</code></pre>
       </div>
     </div>
 
     <div class="os-label">Uninstall</div>
     <div class="install-grid">
       <div class="block">
-        <div class="bt">macOS / Linux <button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/uninstall.sh | bash">Copy</button></div>
-        <pre><code>curl -fsSL https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/paddle-ball/main/uninstall.sh | bash</code></pre>
+        <div class="bt">macOS / Linux <button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/uninstall.sh | bash">Copy</button></div>
+        <pre><code>curl -fsSL https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/uninstall.sh | bash</code></pre>
       </div>
       <div class="block">
-        <div class="bt">Windows <button class="copy" data-copy="irm https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/uninstall.ps1 | iex">Copy</button></div>
-        <pre><code>irm https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/paddle-ball/main/uninstall.ps1 | iex</code></pre>
+        <div class="bt">Windows <button class="copy" data-copy="irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/uninstall.ps1 | iex">Copy</button></div>
+        <pre><code>irm https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/uninstall.ps1 | iex</code></pre>
       </div>
     </div>
     <p style="color:var(--muted);font-size:13px;margin-top:16px;">Both ask for a Y/N confirmation, then remove the binary, its PATH entry, and your saved scores &amp; settings.</p>
@@ -538,12 +538,12 @@ winget install --manifest <span class="a">manifests/s/subhadeeproy3902/paddle-ba
     </div>
     <div class="faq">
       <details open>
-        <summary>What is paddle-ball?</summary>
-        <p>A free, open-source, minimalist paddleball game that runs entirely in your terminal. It pairs sub-stepped collision physics with a spring-driven paddle you steer with the keyboard or mouse, five restrained themes, four game modes, sound, and a persistent score history.</p>
+        <summary>What is pong-ball?</summary>
+        <p>A free, open-source, minimalist Pong game that runs entirely in your terminal. It pairs sub-stepped collision physics with a spring-driven paddle you steer with the keyboard or mouse, five restrained themes, four game modes, sound, and a persistent score history.</p>
       </details>
       <details>
         <summary>How do I install it?</summary>
-        <p>On macOS or Linux: <code>curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash</code>. Or use Homebrew (<code>brew install paddle-ball</code>), Go (<code>go install github.com/subhadeeproy3902/paddle-ball@latest</code>), Docker, or a prebuilt binary from the releases page.</p>
+        <p>On macOS or Linux: <code>curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | bash</code>. Or use Homebrew (<code>brew install pong-ball</code>), Go (<code>go install github.com/subhadeeproy3902/pong-ball@latest</code>), Docker, or a prebuilt binary from the releases page.</p>
       </details>
       <details>
         <summary>Which operating systems are supported?</summary>
@@ -551,7 +551,7 @@ winget install --manifest <span class="a">manifests/s/subhadeeproy3902/paddle-ba
       </details>
       <details>
         <summary>Is it free and open source?</summary>
-        <p>Yes — MIT-licensed and free. The full source lives on <a href="https://github.com/subhadeeproy3902/paddle-ball" style="color:var(--accent)">GitHub</a>.</p>
+        <p>Yes — MIT-licensed and free. The full source lives on <a href="https://github.com/subhadeeproy3902/pong-ball" style="color:var(--accent)">GitHub</a>.</p>
       </details>
     </div>
   </div>
@@ -561,7 +561,7 @@ winget install --manifest <span class="a">manifests/s/subhadeeproy3902/paddle-ba
   <div class="wrap foot-in">
     <p>MIT © 2026 Subhadeep Roy · built with Bubble Tea · sounds by soundcn</p>
     <div class="foot-links">
-      <a href="https://github.com/subhadeeproy3902/paddle-ball">GitHub</a>
+      <a href="https://github.com/subhadeeproy3902/pong-ball">GitHub</a>
       <a href="https://twitter.com/mvp_Subha">Twitter</a>
       <a href="https://linkedin.com/in/subhadeep3902">LinkedIn</a>
     </div>
@@ -607,7 +607,7 @@ winget install --manifest <span class="a">manifests/s/subhadeeproy3902/paddle-ba
     });
   })();
 
-  // Minimal on-theme paddle-ball demo — cream ball, coral paddle, quiet walls.
+  // Minimal on-theme pong-ball demo — cream ball, coral paddle, quiet walls.
   (function () {
     var canvas = document.getElementById("demo");
     if (!canvas) return;

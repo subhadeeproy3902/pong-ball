@@ -156,12 +156,12 @@ func (s *Store) saveConfig(c Config) {
 func dataDir() string {
 	if runtime.GOOS == "windows" {
 		if appdata := os.Getenv("APPDATA"); appdata != "" {
-			return filepath.Join(appdata, "paddle-ball")
+			return filepath.Join(appdata, "pong-ball")
 		}
 	}
 	home, err := os.UserHomeDir()
 	if err != nil {
-		return filepath.Join(".", ".paddle-ball")
+		return filepath.Join(".", ".pong-ball")
 	}
-	return filepath.Join(home, ".paddle-ball")
+	return filepath.Join(home, ".pong-ball")
 }

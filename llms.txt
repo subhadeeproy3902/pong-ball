@@ -1,15 +1,15 @@
-# paddle-ball
+# pong-ball
 
-> paddle-ball is a free, open-source, minimalist paddleball game that runs in the terminal. It uses sub-stepped collision physics (the ball never tunnels through walls or glitches), a spring-driven paddle controlled by keyboard or mouse, five restrained dark themes, four game modes, terminal-bell sound, and a persistent local score history. It is written in Go and ships as a single binary for macOS, Linux, and Windows.
+> pong-ball is a free, open-source, minimalist Pong game that runs in the terminal. It uses sub-stepped collision physics (the ball never tunnels through walls or glitches), a spring-driven paddle controlled by keyboard or mouse, five restrained dark themes, four game modes, terminal-bell sound, and a persistent local score history. It is written in Go and ships as a single binary for macOS, Linux, and Windows.
 
 ## About
 
-- Name: paddle-ball
+- Name: pong-ball
 - Author: Subhadeep Roy (https://github.com/subhadeeproy3902)
 - License: MIT (free and open source)
 - Language: Go, built with the Bubble Tea TUI framework
-- Website: https://paddleball.mvp-subha.me
-- Source: https://github.com/subhadeeproy3902/paddle-ball
+- Website: https://pongball.mvp-subha.me
+- Source: https://github.com/subhadeeproy3902/pong-ball
 
 ## Features
 
@@ -23,11 +23,11 @@
 
 ## Install
 
-- macOS / Linux one-liner: `curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash`
-- Homebrew: `brew install subhadeeproy3902/paddle-ball/paddle-ball`
-- Go: `go install github.com/subhadeeproy3902/paddle-ball@latest`
-- Docker: `docker run --rm -it ghcr.io/subhadeeproy3902/paddle-ball:latest`
-- Binaries, .deb/.rpm/.apk packages, and Windows zip: https://github.com/subhadeeproy3902/paddle-ball/releases
+- macOS / Linux one-liner: `curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | bash`
+- Homebrew: `brew install subhadeeproy3902/pong-ball/pong-ball`
+- Go: `go install github.com/subhadeeproy3902/pong-ball@latest`
+- Docker: `docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest`
+- Binaries, .deb/.rpm/.apk packages, and Windows zip: https://github.com/subhadeeproy3902/pong-ball/releases
 
 ## Controls
 
@@ -36,7 +36,7 @@
 
 ## Links
 
-- [Website](https://paddleball.mvp-subha.me)
-- [GitHub repository](https://github.com/subhadeeproy3902/paddle-ball)
-- [Releases](https://github.com/subhadeeproy3902/paddle-ball/releases)
-- [Setup, Actions & tokens guide](https://github.com/subhadeeproy3902/paddle-ball/blob/main/SETUP.md)
+- [Website](https://pongball.mvp-subha.me)
+- [GitHub repository](https://github.com/subhadeeproy3902/pong-ball)
+- [Releases](https://github.com/subhadeeproy3902/pong-ball/releases)
+- [Setup, Actions & tokens guide](https://github.com/subhadeeproy3902/pong-ball/blob/main/SETUP.md)

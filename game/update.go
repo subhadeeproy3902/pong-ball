@@ -12,8 +12,8 @@ import (
 
 	"github.com/charmbracelet/bubbles/progress"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/subhadeeproy3902/paddle-ball/store"
-	"github.com/subhadeeproy3902/paddle-ball/ui"
+	"github.com/subhadeeproy3902/pong-ball/store"
+	"github.com/subhadeeproy3902/pong-ball/ui"
 )
 
 // Update is the bubbletea Update function — called for every message.

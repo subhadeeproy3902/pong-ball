@@ -10,8 +10,8 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/spf13/cobra"
-	"github.com/subhadeeproy3902/paddle-ball/game"
-	"github.com/subhadeeproy3902/paddle-ball/store"
+	"github.com/subhadeeproy3902/pong-ball/game"
+	"github.com/subhadeeproy3902/pong-ball/store"
 )
 
 var (
@@ -27,11 +27,11 @@ func Execute(version, commit, date string) {
 	buildDate = date
 
 	root := &cobra.Command{
-		Use:   "paddle-ball",
-		Short: "A minimalist physics-based terminal paddleball game",
+		Use:   "pong-ball",
+		Short: "A minimalist physics-based terminal Pong game",
 		Long: lipgloss.NewStyle().Foreground(lipgloss.Color("#cc785c")).Bold(true).
-			Render("paddle-ball") +
-			" — a minimalist paddleball game for the terminal.\n" +
+			Render("pong-ball") +
+			" — a minimalist Pong game for the terminal.\n" +
 			"Sub-stepped physics · spring paddle · five themes · score history",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return runGame("", "")
@@ -43,7 +43,7 @@ func Execute(version, commit, date string) {
 	playCmd := &cobra.Command{
 		Use:     "play",
 		Short:   "Start a game immediately",
-		Example: "  paddle-ball play\n  paddle-ball play --mode arcade\n  paddle-ball play --mode timed --theme nord",
+		Example: "  pong-ball play\n  pong-ball play --mode arcade\n  pong-ball play --mode timed --theme nord",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return runGame(playMode, playTheme)
 		},
@@ -64,7 +64,7 @@ func Execute(version, commit, date string) {
 				return fmt.Errorf("could not load scores: %w", err)
 			}
 			if len(records) == 0 {
-				fmt.Println("No scores yet. Run `paddle-ball play` first!")
+				fmt.Println("No scores yet. Run `pong-ball play` first!")
 				return nil
 			}
 			if scoresMode != "" {
@@ -86,7 +86,7 @@ func Execute(version, commit, date string) {
 				return enc.Encode(top)
 			}
 			style := lipgloss.NewStyle().Foreground(lipgloss.Color("#cc785c")).Bold(true)
-			fmt.Println(style.Render("paddle-ball — score history"))
+			fmt.Println(style.Render("pong-ball — score history"))
 			fmt.Println()
 			w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
 			fmt.Fprintln(w, "#\tSCORE\tMODE\tSTREAK\tDURATION\tDATE")
@@ -136,7 +136,7 @@ func Execute(version, commit, date string) {
 		Use:   "version",
 		Short: "Print version info",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Printf("paddle-ball %s\n  commit: %s\n  built:  %s\n",
+			fmt.Printf("pong-ball %s\n  commit: %s\n  built:  %s\n",
 				buildVersion, buildCommit, buildDate)
 		},
 	}

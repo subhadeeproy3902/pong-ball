@@ -1,16 +1,15 @@
 package game
 
-// title_art.go - big "Paddle Ball" wordmark for the title screen. Shown when
-// the terminal is wide enough; view.go falls back to a compact wordmark on
-// narrow terminals so it never wraps. Gradient is applied at render time.
+// title_art.go - PONG figlet wordmark (font: banner3) for the title screen.
+// Bold block letters, ~39 cols wide so it fits any >=60-col terminal without
+// wrapping; the gradient is applied at render time in view.go.
 
 var titleWordmark = []string{
-	" /$$$$$$$                 /$$       /$$ /$$                 /$$$$$$$            /$$ /$$",
-	"| $$__  $$               | $$      | $$| $$                | $$__  $$          | $$| $$",
-	"| $$  \\ $$ /$$$$$$   /$$$$$$$  /$$$$$$$| $$  /$$$$$$       | $$  \\ $$  /$$$$$$ | $$| $$",
-	"| $$$$$$$/|____  $$ /$$__  $$ /$$__  $$| $$ /$$__  $$      | $$$$$$$  |____  $$| $$| $$",
-	"| $$____/  /$$$$$$$| $$  | $$| $$  | $$| $$| $$$$$$$$      | $$__  $$  /$$$$$$$| $$| $$",
-	"| $$      /$$__  $$| $$  | $$| $$  | $$| $$| $$_____/      | $$  \\ $$ /$$__  $$| $$| $$",
-	"| $$     |  $$$$$$$|  $$$$$$$|  $$$$$$$| $$|  $$$$$$$      | $$$$$$$/|  $$$$$$$| $$| $$",
-	"|__/      \\_______/ \\_______/ \\_______/|__/ \\_______/      |_______/  \\_______/|__/|__/",
+	"########   #######  ##    ##  ######   ",
+	"##     ## ##     ## ###   ## ##    ##  ",
+	"##     ## ##     ## ####  ## ##        ",
+	"########  ##     ## ## ## ## ##   #### ",
+	"##        ##     ## ##  #### ##    ##  ",
+	"##        ##     ## ##   ### ##    ##  ",
+	"##         #######  ##    ##  ######   ",
 }

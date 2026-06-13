@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# install.sh — one-line installer for paddle-ball
-# Usage:  curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash
+# install.sh — one-line installer for pong-ball
+# Usage:  curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | bash
 set -euo pipefail
 
-REPO="subhadeeproy3902/paddle-ball"
-BINARY="paddle-ball"
+REPO="subhadeeproy3902/pong-ball"
+BINARY="pong-ball"
 INSTALL_DIR="${INSTALL_DIR:-/usr/local/bin}"
 
 # ── colour helpers ──────────────────────────────────────────────────────────
 RED='\033[0;31m'; GREEN='\033[0;32m'; CYAN='\033[0;36m'; BOLD='\033[1m'; RESET='\033[0m'
-info()    { echo -e "${CYAN}[paddle-ball]${RESET} $*"; }
-success() { echo -e "${GREEN}[paddle-ball]${RESET} $*"; }
-error()   { echo -e "${RED}[paddle-ball] ERROR:${RESET} $*" >&2; exit 1; }
+info()    { echo -e "${CYAN}[pong-ball]${RESET} $*"; }
+success() { echo -e "${GREEN}[pong-ball]${RESET} $*"; }
+error()   { echo -e "${RED}[pong-ball] ERROR:${RESET} $*" >&2; exit 1; }
 
 # ── detect OS ───────────────────────────────────────────────────────────────
 OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
@@ -82,5 +82,5 @@ INSTALLED_VER="$("$DEST" version 2>/dev/null | head -1 || echo '?')"
 success "Installed ${BOLD}${BINARY}${RESET} → ${DEST}"
 success "Version: ${INSTALLED_VER}"
 echo
-echo -e "  Run ${CYAN}paddle-ball${RESET} to play!"
-echo -e "  Run ${CYAN}paddle-ball --help${RESET} for all commands."
+echo -e "  Run ${CYAN}pong-ball${RESET} to play!"
+echo -e "  Run ${CYAN}pong-ball --help${RESET} for all commands."

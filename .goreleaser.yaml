@@ -1,6 +1,6 @@
 version: 2
 
-project_name: paddle-ball
+project_name: pong-ball
 
 before:
   hooks:
@@ -8,9 +8,9 @@ before:
     - go generate ./...
 
 builds:
-  - id: paddle-ball
+  - id: pong-ball
     main: .
-    binary: paddle-ball
+    binary: pong-ball
     goos:
       - linux
       - darwin
@@ -57,40 +57,40 @@ changelog:
 release:
   github:
     owner: subhadeeproy3902
-    name: paddle-ball
+    name: pong-ball
   name_template: "v{{ .Version }}"
 
 brews:
-  - name: paddle-ball
+  - name: pong-ball
     # Self-hosted tap: the formula lives in THIS repo's Formula/ folder. The
     # automatic GITHUB_TOKEN can write to the same repo, so no PAT or separate
     # tap repo is needed. Install: brew install <raw Formula URL>.
     repository:
       owner: subhadeeproy3902
-      name: paddle-ball
+      name: pong-ball
       branch: main
     directory: Formula
     skip_upload: false
-    homepage: "https://paddleball.mvp-subha.me"
-    description: "A minimalist physics-based terminal paddleball game with score history"
+    homepage: "https://pongball.mvp-subha.me"
+    description: "A minimalist physics-based terminal Pong game with score history"
     license: MIT
     commit_author:
       name: goreleaserbot
       email: bot@goreleaser.com
     commit_msg_template: "chore: homebrew formula for {{ .Tag }}"
     test: |
-      system "#{bin}/paddle-ball version"
+      system "#{bin}/pong-ball version"
     install: |
-      bin.install "paddle-ball"
+      bin.install "pong-ball"
 
 nfpms:
   - id: packages
-    package_name: paddle-ball
+    package_name: pong-ball
     vendor: Subhadeep Roy
-    homepage: https://github.com/subhadeeproy3902/paddle-ball
+    homepage: https://github.com/subhadeeproy3902/pong-ball
     maintainer: "Subhadeep Roy <subhadeep3902@gmail.com>"
     description: |-
-      A minimalist physics-based terminal paddleball game.
+      A minimalist physics-based terminal Pong game.
       Sub-stepped collision physics, a spring-driven paddle, power-ups,
       persistent score history, and five restrained themes.
     license: MIT
@@ -102,40 +102,40 @@ nfpms:
     section: games
     contents:
       - src: ./README.md
-        dst: /usr/share/doc/paddle-ball/README.md
+        dst: /usr/share/doc/pong-ball/README.md
 
 # Scoop (Windows). The manifest lives in THIS repo's bucket/ folder. Install:
-#   scoop install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/bucket/paddle-ball.json
+#   scoop install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/bucket/pong-ball.json
 scoops:
-  - name: paddle-ball
+  - name: pong-ball
     repository:
       owner: subhadeeproy3902
-      name: paddle-ball
+      name: pong-ball
       branch: main
     directory: bucket
     commit_author:
       name: goreleaserbot
       email: bot@goreleaser.com
     commit_msg_template: "chore: scoop manifest for {{ .Tag }}"
-    homepage: "https://paddleball.mvp-subha.me"
-    description: "A minimalist physics-based terminal paddleball game with score history"
+    homepage: "https://pongball.mvp-subha.me"
+    description: "A minimalist physics-based terminal Pong game with score history"
     license: MIT
     skip_upload: false
 
 # WinGet (Windows). Manifests are committed to THIS repo's manifests/ folder.
-# `winget install paddle-ball` from the official catalog needs a reviewed PR to
+# `winget install pong-ball` from the official catalog needs a reviewed PR to
 # microsoft/winget-pkgs; from the folder here, use: winget install --manifest <dir>.
 winget:
-  - name: paddle-ball
+  - name: pong-ball
     publisher: subhadeeproy3902
-    package_identifier: subhadeeproy3902.paddle-ball
+    package_identifier: subhadeeproy3902.pong-ball
     license: MIT
-    homepage: "https://paddleball.mvp-subha.me"
-    short_description: "A minimalist physics-based terminal paddleball game"
-    description: "Physics-based paddleball for the terminal — sub-stepped collisions, a spring-driven paddle, five themes, four modes, and a persistent score history."
+    homepage: "https://pongball.mvp-subha.me"
+    short_description: "A minimalist physics-based terminal Pong game"
+    description: "Physics-based Pong for the terminal — sub-stepped collisions, a spring-driven paddle, five themes, four modes, and a persistent score history."
     repository:
       owner: subhadeeproy3902
-      name: paddle-ball
+      name: pong-ball
       branch: main
     commit_author:
       name: goreleaserbot
@@ -150,13 +150,13 @@ winget:
 
 dockers:
   - image_templates:
-      - "ghcr.io/subhadeeproy3902/paddle-ball:{{ .Tag }}"
-      - "ghcr.io/subhadeeproy3902/paddle-ball:latest"
+      - "ghcr.io/subhadeeproy3902/pong-ball:{{ .Tag }}"
+      - "ghcr.io/subhadeeproy3902/pong-ball:latest"
     dockerfile: Dockerfile
     goos: linux
     goarch: amd64
     build_flag_templates:
       - "--platform=linux/amd64"
-      - "--label=org.opencontainers.image.title=paddle-ball"
+      - "--label=org.opencontainers.image.title=pong-ball"
       - "--label=org.opencontainers.image.version={{ .Version }}"
-      - "--label=org.opencontainers.image.source=https://github.com/subhadeeproy3902/paddle-ball"
+      - "--label=org.opencontainers.image.source=https://github.com/subhadeeproy3902/pong-ball"

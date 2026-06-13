@@ -1,6 +1,6 @@
 package main
 
-import "github.com/subhadeeproy3902/paddle-ball/cmd"
+import "github.com/subhadeeproy3902/pong-ball/cmd"
 
 // Injected by goreleaser at build time.
 var (

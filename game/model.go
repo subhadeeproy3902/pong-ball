@@ -17,8 +17,8 @@ import (
 	"github.com/charmbracelet/bubbles/progress"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/harmonica"
-	"github.com/subhadeeproy3902/paddle-ball/store"
-	"github.com/subhadeeproy3902/paddle-ball/ui"
+	"github.com/subhadeeproy3902/pong-ball/store"
+	"github.com/subhadeeproy3902/pong-ball/ui"
 )
 
 // ─────────────────────────────────────────────────────────────────────────────

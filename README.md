@@ -1,17 +1,17 @@
 <div align="center">
 
-<a href="https://paddleball.mvp-subha.me">
-  <img src="assets/banner.svg" alt="paddle-ball — a minimalist, physics-based paddle game for your terminal" width="100%" />
+<a href="https://pongball.mvp-subha.me">
+  <img src="assets/banner.svg" alt="pong-ball — a minimalist, physics-based paddle game for your terminal" width="100%" />
 </a>
 
 <br />
 
-[![Release](https://img.shields.io/github/v/release/subhadeeproy3902/paddle-ball?style=flat-square&color=cc785c&labelColor=1f1e1b)](https://github.com/subhadeeproy3902/paddle-ball/releases)
-[![CI](https://img.shields.io/github/actions/workflow/status/subhadeeproy3902/paddle-ball/release.yml?style=flat-square&label=ci&color=5db8a6&labelColor=1f1e1b)](https://github.com/subhadeeproy3902/paddle-ball/actions)
+[![Release](https://img.shields.io/github/v/release/subhadeeproy3902/pong-ball?style=flat-square&color=cc785c&labelColor=1f1e1b)](https://github.com/subhadeeproy3902/pong-ball/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/subhadeeproy3902/pong-ball/release.yml?style=flat-square&label=ci&color=5db8a6&labelColor=1f1e1b)](https://github.com/subhadeeproy3902/pong-ball/actions)
 [![Go](https://img.shields.io/badge/Go-1.21+-a09d96?style=flat-square&logo=go&logoColor=white&labelColor=1f1e1b)](https://go.dev)
 [![License](https://img.shields.io/badge/license-MIT-a09d96?style=flat-square&labelColor=1f1e1b)](LICENSE)
 
-**[Website](https://paddleball.mvp-subha.me)** · **[Install](#install)** · **[Releases](https://github.com/subhadeeproy3902/paddle-ball/releases)** · **[Controls](#controls)**
+**[Website](https://pongball.mvp-subha.me)** · **[Install](#install)** · **[Releases](https://github.com/subhadeeproy3902/pong-ball/releases)** · **[Controls](#controls)**
 
 </div>
 
@@ -34,7 +34,7 @@
 ## Gameplay
 
 <div align="center">
-  <img src="assets/screenshot.png" alt="paddle-ball running in a terminal — Arcade mode with score, lives, streak, the ball and its trail, the coral paddle, and an active Fire Paddle power-up" width="820" />
+  <img src="assets/screenshot.png" alt="pong-ball running in a terminal — Arcade mode with score, lives, streak, the ball and its trail, the coral paddle, and an active Fire Paddle power-up" width="820" />
   <br />
   <sub>Arcade · Claude theme — an actual rendered frame, not a mockup.</sub>
 </div>
@@ -44,32 +44,32 @@
 ### macOS / Linux
 ```bash
 # one-line installer
-curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | bash
 
 # Homebrew (formula is self-hosted in this repo's Formula/ folder)
-brew install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/Formula/paddle-ball.rb
+brew install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/Formula/pong-ball.rb
 ```
 
 ### Windows
 ```powershell
 # PowerShell one-liner
-irm https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.ps1 | iex
 
 # Scoop (manifest is self-hosted in this repo's bucket/ folder)
-scoop install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/bucket/paddle-ball.json
+scoop install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/bucket/pong-ball.json
 
 # WinGet — manifests live in this repo's manifests/ folder (use the version dir)
-winget install --manifest manifests/s/subhadeeproy3902/paddle-ball/1.0.5
+winget install --manifest manifests/s/subhadeeproy3902/pong-ball/1.0.5
 ```
 
 ### Any platform
 ```bash
-go install github.com/subhadeeproy3902/paddle-ball@latest
-docker run --rm -it ghcr.io/subhadeeproy3902/paddle-ball:latest
+go install github.com/subhadeeproy3902/pong-ball@latest
+docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest
 ```
 
 Prebuilt binaries and `.deb`/`.rpm`/`.apk` packages are on the
-[releases page](https://github.com/subhadeeproy3902/paddle-ball/releases).
+[releases page](https://github.com/subhadeeproy3902/pong-ball/releases).
 All package manifests (Homebrew/Scoop/WinGet) are kept **in this repo** —
 `Formula/`, `bucket/`, `manifests/` — and refreshed on every release.
 
@@ -77,34 +77,34 @@ All package manifests (Homebrew/Scoop/WinGet) are kept **in this repo** —
 
 ```bash
 # macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/uninstall.sh | bash
 ```
 ```powershell
 # Windows
-irm https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/uninstall.ps1 | iex
+irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/uninstall.ps1 | iex
 ```
 
 Both prompt for a **Y/N** confirmation, then remove the binary (every copy on
 your `PATH`), its `PATH` entry, the saved scores/config, and the cached sound
-files. (Scoop/Homebrew installs: use `scoop uninstall paddle-ball` /
-`brew uninstall paddle-ball`.)
+files. (Scoop/Homebrew installs: use `scoop uninstall pong-ball` /
+`brew uninstall pong-ball`.)
 
 ---
 
 ## Usage
 
 ```
-paddle-ball                     # title screen
-paddle-ball play                # jump straight in (Classic)
-paddle-ball play --mode arcade  # Arcade mode with power-ups
-paddle-ball play --mode zen     # endless rally
-paddle-ball play --mode timed   # 60-second blitz
-paddle-ball play --theme nord   # start on a chosen theme
-paddle-ball scores              # leaderboard
-paddle-ball scores --all        # full history
-paddle-ball scores --json       # raw JSON
-paddle-ball reset               # wipe saved scores
-paddle-ball version             # version info
+pong-ball                     # title screen
+pong-ball play                # jump straight in (Classic)
+pong-ball play --mode arcade  # Arcade mode with power-ups
+pong-ball play --mode zen     # endless rally
+pong-ball play --mode timed   # 60-second blitz
+pong-ball play --theme nord   # start on a chosen theme
+pong-ball scores              # leaderboard
+pong-ball scores --all        # full history
+pong-ball scores --json       # raw JSON
+pong-ball reset               # wipe saved scores
+pong-ball version             # version info
 ```
 
 ## Controls
@@ -138,8 +138,8 @@ paddle-ball version             # version info
 ## Development
 
 ```bash
-git clone https://github.com/subhadeeproy3902/paddle-ball
-cd paddle-ball
+git clone https://github.com/subhadeeproy3902/pong-ball
+cd pong-ball
 go mod tidy
 go run .            # run the game
 go test ./...       # unit tests (physics regression suite)
@@ -158,7 +158,7 @@ Every push and PR runs build / vet / test; only `v*` tags run a release.
 ## Project structure
 
 ```
-paddle-ball/
+pong-ball/
 ├── main.go                 Entry point (version injection)
 ├── cmd/root.go             Cobra CLI commands
 ├── game/
@@ -174,7 +174,7 @@ paddle-ball/
 ├── ui/theme.go             Five color themes + lipgloss helpers
 ├── store/store.go          Score + config persistence (atomic JSON)
 ├── assets/                 Logo, banner, OG image, screenshot, icons
-├── index.html              Landing page (paddleball.mvp-subha.me)
+├── index.html              Landing page (pongball.mvp-subha.me)
 ├── .goreleaser.yaml        Cross-compile + publish pipeline
 └── .github/workflows       CI (build/vet/test) + tagged release
 ```
@@ -183,7 +183,7 @@ paddle-ball/
 
 ## Links
 
-- **GitHub** — [github.com/subhadeeproy3902/paddle-ball](https://github.com/subhadeeproy3902/paddle-ball)
+- **GitHub** — [github.com/subhadeeproy3902/pong-ball](https://github.com/subhadeeproy3902/pong-ball)
 - **Twitter** — [@mvp_Subha](https://twitter.com/mvp_Subha)
 - **LinkedIn** — [subhadeep3902](https://linkedin.com/in/subhadeep3902)
 

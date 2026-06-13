@@ -42,7 +42,7 @@ is why releases work out of the box — **no personal token required.**
 
 ### `HOMEBREW_TOKEN` — optional, only for the Homebrew tap
 GoReleaser can auto-update a separate Homebrew tap repo
-(`homebrew-paddle-ball`) on each release. Pushing to *another* repo needs a
+(`homebrew-pong-ball`) on each release. Pushing to *another* repo needs a
 token with permission to do so — the automatic `GITHUB_TOKEN` can't reach
 outside this repo. That's what `HOMEBREW_TOKEN` is for.
 
@@ -81,10 +81,10 @@ gh release delete v1.0.1        # delete the release if one was made
 Each `v*` tag produces, attached to the GitHub Release:
 
 - **Binaries** for Linux, macOS, and Windows × amd64 + arm64 (no Windows/arm64),
-  as `paddle-ball_<os>_<arch>.tar.gz` (`.zip` on Windows).
+  as `pong-ball_<os>_<arch>.tar.gz` (`.zip` on Windows).
 - **Linux packages** — `.deb`, `.rpm`, and `.apk`.
 - **`checksums.txt`** — SHA-256 of every artifact.
-- **A Docker image** pushed to `ghcr.io/subhadeeproy3902/paddle-ball:<tag>` and `:latest`.
+- **A Docker image** pushed to `ghcr.io/subhadeeproy3902/pong-ball:<tag>` and `:latest`.
 - **A Homebrew formula** (built as an artifact; pushed to the tap only once §5 is done).
 
 ---
@@ -93,12 +93,12 @@ Each `v*` tag produces, attached to the GitHub Release:
 
 | Platform | Command |
 |---|---|
-| macOS / Linux | `curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh \| bash` |
-| Any Go env | `go install github.com/subhadeeproy3902/paddle-ball@latest` |
-| Docker | `docker run --rm -it ghcr.io/subhadeeproy3902/paddle-ball:latest` |
-| Debian/Ubuntu | download the `.deb` from Releases → `sudo dpkg -i paddle-ball_*.deb` |
-| Fedora/RHEL | download the `.rpm` → `sudo rpm -i paddle-ball_*.rpm` |
-| Alpine | download the `.apk` → `sudo apk add --allow-untrusted paddle-ball_*.apk` |
+| macOS / Linux | `curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh \| bash` |
+| Any Go env | `go install github.com/subhadeeproy3902/pong-ball@latest` |
+| Docker | `docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest` |
+| Debian/Ubuntu | download the `.deb` from Releases → `sudo dpkg -i pong-ball_*.deb` |
+| Fedora/RHEL | download the `.rpm` → `sudo rpm -i pong-ball_*.rpm` |
+| Alpine | download the `.apk` → `sudo apk add --allow-untrusted pong-ball_*.apk` |
 | Windows | download the `.zip` from Releases, unzip, add the folder to `PATH` (or `go install`) |
 
 The `install.sh` script auto-detects OS + arch and pulls the matching archive
@@ -108,18 +108,18 @@ from the latest release.
 
 ## 6. Homebrew — enabled
 
-The `homebrew-paddle-ball` tap and the `HOMEBREW_TOKEN` secret are configured,
+The `homebrew-pong-ball` tap and the `HOMEBREW_TOKEN` secret are configured,
 and `brews[].skip_upload` is `false`, so each `v*` tag pushes an updated
-`Formula/paddle-ball.rb` to the tap. Users install with:
+`Formula/pong-ball.rb` to the tap. Users install with:
 
 ```bash
-brew install subhadeeproy3902/paddle-ball/paddle-ball
+brew install subhadeeproy3902/pong-ball/pong-ball
 ```
 
 If a release ever fails on the Homebrew step, it means the `HOMEBREW_TOKEN`
 secret is missing or its scope can't push to the tap repo — recreate it as a
 classic PAT with `repo` scope (or a fine-grained token with Contents:
-read/write on `homebrew-paddle-ball`).
+read/write on `homebrew-pong-ball`).
 
 ## 7. Scoop & WinGet (Windows)
 
@@ -129,9 +129,9 @@ GoReleaser also **generates Scoop and WinGet manifests** on every release
 with `skip_upload: true` so they're build artifacts and never block a release.
 To make `scoop install` / `winget install` work:
 
-- **Scoop** — create a public **`scoop-paddle-ball`** bucket repo, ensure a
+- **Scoop** — create a public **`scoop-pong-ball`** bucket repo, ensure a
   token can push to it, and set `scoops[].skip_upload: false`. Then:
-  `scoop bucket add paddle-ball https://github.com/subhadeeproy3902/scoop-paddle-ball; scoop install paddle-ball`.
+  `scoop bucket add pong-ball https://github.com/subhadeeproy3902/scoop-pong-ball; scoop install pong-ball`.
 - **WinGet** — point `winget[].repository` at your fork of
   `microsoft/winget-pkgs`, set `skip_upload: false`, and GoReleaser opens the
   catalog PR (subject to Microsoft's review).
@@ -161,4 +161,4 @@ goreleaser release --snapshot --clean --skip=publish,docker
 
 ---
 
-*Questions or bugs → <https://github.com/subhadeeproy3902/paddle-ball/issues>*
+*Questions or bugs → <https://github.com/subhadeeproy3902/pong-ball/issues>*
