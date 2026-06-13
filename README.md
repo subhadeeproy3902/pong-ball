@@ -58,8 +58,8 @@ irm https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.
 # Scoop (manifest is self-hosted in this repo's bucket/ folder)
 scoop install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/bucket/paddle-ball.json
 
-# WinGet — manifests live in this repo's manifests/ folder
-winget install --manifest manifests/s/subhadeeproy3902/paddle-ball
+# WinGet — manifests live in this repo's manifests/ folder (use the version dir)
+winget install --manifest manifests/s/subhadeeproy3902/paddle-ball/1.0.3
 ```
 
 ### Any platform
