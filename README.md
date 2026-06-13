@@ -59,7 +59,7 @@ irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.ps
 scoop install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/bucket/pong-ball.json
 
 # WinGet — manifests live in this repo's manifests/ folder (use the version dir)
-winget install --manifest manifests/s/subhadeeproy3902/pong-ball/1.0.5
+winget install --manifest manifests/s/subhadeeproy3902/pong-ball/1.1.0
 ```
 
 ### Any platform
