@@ -251,7 +251,7 @@
   .os-label:first-of-type { margin-top: 0; }
   .install-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .install-grid + .os-label { margin-top: 36px; }
-  .block { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+  .block { display: "flex"; flex-direction: column; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
   .block .bt { padding: 10px 12px 10px 18px; font-family: var(--mono); font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--hairline); letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .block pre { padding: 18px; overflow-x: auto; }
   .block code { font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--text); }
@@ -499,6 +499,19 @@ winget install --manifest <span class="a">manifests/s/subhadeeproy3902/paddle-ba
         <pre><code>docker run --rm -it ghcr.io/subhadeeproy3902/paddle-ball:latest</code></pre>
       </div>
     </div>
+
+    <div class="os-label">Uninstall</div>
+    <div class="install-grid">
+      <div class="block">
+        <div class="bt">macOS / Linux <button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/uninstall.sh | bash">Copy</button></div>
+        <pre><code>curl -fsSL https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/paddle-ball/main/uninstall.sh | bash</code></pre>
+      </div>
+      <div class="block">
+        <div class="bt">Windows <button class="copy" data-copy="irm https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/uninstall.ps1 | iex">Copy</button></div>
+        <pre><code>irm https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/paddle-ball/main/uninstall.ps1 | iex</code></pre>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin-top:-4px;">Both ask for a Y/N confirmation, then remove the binary, its PATH entry, and your saved scores &amp; settings.</p>
 
     <div class="sec-head" style="margin-top:64px;margin-bottom:32px;">
       <span class="eyebrow">Controls</span>

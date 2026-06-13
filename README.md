@@ -73,6 +73,22 @@ Prebuilt binaries and `.deb`/`.rpm`/`.apk` packages are on the
 All package manifests (Homebrew/Scoop/WinGet) are kept **in this repo** —
 `Formula/`, `bucket/`, `manifests/` — and refreshed on every release.
 
+### Uninstall
+
+```bash
+# macOS / Linux
+curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/uninstall.sh | bash
+```
+```powershell
+# Windows
+irm https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/uninstall.ps1 | iex
+```
+
+Both prompt for a **Y/N** confirmation, then remove the binary (every copy on
+your `PATH`), its `PATH` entry, the saved scores/config, and the cached sound
+files. (Scoop/Homebrew installs: use `scoop uninstall paddle-ball` /
+`brew uninstall paddle-ball`.)
+
 ---
 
 ## Usage
