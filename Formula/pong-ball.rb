@@ -5,21 +5,21 @@
 class PongBall < Formula
   desc "A minimalist physics-based terminal Pong game with score history"
   homepage "https://pongball.mvp-subha.me"
-  version "1.1.0"
+  version "1.0.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.1.0/pong-ball_darwin_amd64.tar.gz"
-      sha256 "caf1b7825000bd23257b13b223870c1f774df67c336be295c9d85a53efcad430"
+      url "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.0.0/pong-ball_darwin_amd64.tar.gz"
+      sha256 "6e296abc07aa752b9d00a27d0a74d7eacbcbedec081156602ebfdcc5efea148d"
 
       define_method(:install) do
         bin.install "pong-ball"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.1.0/pong-ball_darwin_arm64.tar.gz"
-      sha256 "198ee6e89587f117889ee42926603b3c7bde7c6f40e59ea5fe29fc41440818eb"
+      url "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.0.0/pong-ball_darwin_arm64.tar.gz"
+      sha256 "5a5a25244a8df0df77b621ac9f63b1c7e1d19bc374ca2c8ecdbc723625dd6097"
 
       define_method(:install) do
         bin.install "pong-ball"
@@ -29,15 +29,15 @@ class PongBall < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.1.0/pong-ball_linux_amd64.tar.gz"
-      sha256 "8fd8f2bed18e51e90796adef98e0f4eeaac66a034ce4379727e02e601aee0601"
+      url "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.0.0/pong-ball_linux_amd64.tar.gz"
+      sha256 "2840b5c0b94a74f15d3d9da80c6e57c473b6f14c443fac46effc79b83f7e2de3"
       define_method(:install) do
         bin.install "pong-ball"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.1.0/pong-ball_linux_arm64.tar.gz"
-      sha256 "ad68289cf322768c43fb15522756206819ee531b6d8721cc575a712183add601"
+      url "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.0.0/pong-ball_linux_arm64.tar.gz"
+      sha256 "6ddcfd3f5f77099baaeab909f38d47e7a5fb1a4f0ab6b16910cf9a6eb4e90c40"
       define_method(:install) do
         bin.install "pong-ball"
       end
