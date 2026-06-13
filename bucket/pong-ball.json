@@ -1,0 +1,15 @@
+{
+    "version": "1.1.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/subhadeeproy3902/pong-ball/releases/download/v1.1.0/pong-ball_windows_amd64.zip",
+            "bin": [
+                "pong-ball.exe"
+            ],
+            "hash": "a5ac1bc58e7b6e2bf732bc50b0b45380e3d46a62f3c5cd9cfa152fdbfe3d9838"
+        }
+    },
+    "homepage": "https://pongball.mvp-subha.me",
+    "license": "MIT",
+    "description": "A minimalist physics-based terminal Pong game with score history"
+}
