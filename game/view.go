@@ -64,9 +64,23 @@ func (m Model) viewTooSmall(t *ui.Theme) string {
 // ─────────────────────────────────────────────────────────────────────────────
 
 func (m Model) viewTitle(t *ui.Theme) string {
-	// Compact one-line gradient wordmark, gently shimmering over time.
-	off := float64(m.titleFrame) * 0.012
-	logo := gradientArt(titleWordmark, t.Accent, t.Phase[4], off)
+	// Big gradient wordmark when the terminal is wide enough; a compact one on
+	// narrow terminals so the art never wraps and breaks the layout.
+	logoW := 0
+	for _, l := range titleWordmark {
+		if len(l) > logoW {
+			logoW = len(l)
+		}
+	}
+	var logo string
+	if m.width >= logoW+2 {
+		off := float64(m.titleFrame) * 0.012
+		logo = gradientArt(titleWordmark, t.Accent, t.Phase[4], off)
+	} else {
+		logo = ui.SB(t.Ball).Render("●  ") +
+			ui.SB(t.Accent).Render(spaced("PADDLE BALL")) +
+			ui.SB(t.Ball).Render("  ●")
+	}
 
 	tagline := ui.S(t.Faint).Render("a minimalist, physics-based paddle game for your terminal")
 

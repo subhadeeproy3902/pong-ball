@@ -33,6 +33,7 @@ const (
 	SpringDamp      = 1.0  // harmonica damping ratio (1.0 = critically damped: smooth glide, NO overshoot/wobble)
 	PUCatchInterval = 7    // catches between power-up spawns (Arcade/Zen)
 	HitBellGap      = 0.11 // min seconds between paddle-hit beeps (anti-machine-gun)
+	BounceGap       = 0.05 // min seconds between wall-bounce blips (anti-machine-gun)
 	MaxSubSteps     = 16   // physics sub-steps cap per frame (continuous collision)
 )
 
@@ -270,6 +271,7 @@ type Model struct {
 	// ── sound ──────────────────────────────────────────────────────────────
 	soundOn   bool
 	hitBellCD float64 // cooldown so rapid rallies don't machine-gun the hit sound
+	bounceCD  float64 // cooldown so rapid wall bounces don't machine-gun the blip
 
 	// ── store / leaderboard ────────────────────────────────────────────────
 	st           *store.Store

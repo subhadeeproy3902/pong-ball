@@ -21,14 +21,15 @@ var soundFS embed.FS
 
 // soundFile maps each event to its embedded soundcn MP3.
 var soundFile = map[Sfx]string{
-	SfxHit:   "coin-collect.mp3",         // paddle catch (short, frequent)
-	SfxMiss:  "phaser-down-2.mp3",        // ball lost (descending)
-	SfxPower: "power-up-3.mp3",           // power-up collected
-	SfxPhase: "phase-jump-1.mp3",         // difficulty phase up
-	SfxStart: "begin.mp3",                // countdown GO
-	SfxOver:  "explosion-crunch-002.mp3", // game over
-	SfxBest:  "arcade-mode.mp3",          // new personal best (fanfare)
-	SfxMenu:  "select-003.mp3",           // menu move / selection
+	SfxHit:    "coin-collect.mp3",         // paddle catch (short, frequent)
+	SfxMiss:   "phaser-down-2.mp3",        // ball lost (descending)
+	SfxPower:  "power-up-3.mp3",           // power-up collected
+	SfxPhase:  "phase-jump-1.mp3",         // difficulty phase up
+	SfxStart:  "begin.mp3",                // countdown GO
+	SfxOver:   "explosion-crunch-002.mp3", // game over
+	SfxBest:   "arcade-mode.mp3",          // new personal best (fanfare)
+	SfxMenu:   "select-003.mp3",           // menu move / selection
+	SfxBounce: "select-003.mp3",           // ball off a wall (reuse the crisp blip)
 }
 
 var (

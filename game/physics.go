@@ -25,6 +25,9 @@ func (m *Model) updateBall(dt float64) {
 	if m.hitBellCD > 0 {
 		m.hitBellCD -= dt
 	}
+	if m.bounceCD > 0 {
+		m.bounceCD -= dt
+	}
 
 	speedMult := 1.0
 	if m.activePU != nil && m.activePU.Kind == PUSlowMo {
@@ -61,12 +64,14 @@ func (m *Model) advanceBall(dt, speedMult float64) (lost bool) {
 		nx = 0
 		if m.ball.VX < 0 {
 			m.ball.VX = -m.ball.VX
+			m.requestSfx(SfxBounce)
 		}
 		m.spawnWallParticles(0, clampInt(int(math.Round(ny)), 0, m.playH-1))
 	} else if rEdge := float64(m.playW - 1); nx >= rEdge {
 		nx = rEdge
 		if m.ball.VX > 0 {
 			m.ball.VX = -m.ball.VX
+			m.requestSfx(SfxBounce)
 		}
 		m.spawnWallParticles(m.playW-1, clampInt(int(math.Round(ny)), 0, m.playH-1))
 	}
@@ -76,6 +81,7 @@ func (m *Model) advanceBall(dt, speedMult float64) (lost bool) {
 		ny = 0
 		if m.ball.VY < 0 {
 			m.ball.VY = -m.ball.VY
+			m.requestSfx(SfxBounce)
 		}
 		m.spawnWallParticles(clampInt(int(math.Round(nx)), 0, m.playW-1), 0)
 	}

@@ -1,12 +1,16 @@
 package game
 
-// title_art.go - compact single-line figlet wordmark (font: small) for the
-// title screen. Kept short (4 rows, fits one line on any >=60-col terminal)
-// and gradient-colored at render time in view.go.
+// title_art.go - big "Paddle Ball" wordmark for the title screen. Shown when
+// the terminal is wide enough; view.go falls back to a compact wordmark on
+// narrow terminals so it never wraps. Gradient is applied at render time.
 
 var titleWordmark = []string{
-	" ___  _   ___  ___  _    ___   ___   _   _    _    ",
-	"| _ \\/_\\ |   \\|   \\| |  | __| | _ ) /_\\ | |  | |   ",
-	"|  _/ _ \\| |) | |) | |__| _|  | _ \\/ _ \\| |__| |__ ",
-	"|_|/_/ \\_\\___/|___/|____|___| |___/_/ \\_\\____|____|",
+	" /$$$$$$$                 /$$       /$$ /$$                 /$$$$$$$            /$$ /$$",
+	"| $$__  $$               | $$      | $$| $$                | $$__  $$          | $$| $$",
+	"| $$  \\ $$ /$$$$$$   /$$$$$$$  /$$$$$$$| $$  /$$$$$$       | $$  \\ $$  /$$$$$$ | $$| $$",
+	"| $$$$$$$/|____  $$ /$$__  $$ /$$__  $$| $$ /$$__  $$      | $$$$$$$  |____  $$| $$| $$",
+	"| $$____/  /$$$$$$$| $$  | $$| $$  | $$| $$| $$$$$$$$      | $$__  $$  /$$$$$$$| $$| $$",
+	"| $$      /$$__  $$| $$  | $$| $$  | $$| $$| $$_____/      | $$  \\ $$ /$$__  $$| $$| $$",
+	"| $$     |  $$$$$$$|  $$$$$$$|  $$$$$$$| $$|  $$$$$$$      | $$$$$$$/|  $$$$$$$| $$| $$",
+	"|__/      \\_______/ \\_______/ \\_______/|__/ \\_______/      |_______/  \\_______/|__/|__/",
 }
