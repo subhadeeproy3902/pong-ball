@@ -62,14 +62,14 @@ release:
 
 brews:
   - name: paddle-ball
+    # Self-hosted tap: the formula lives in THIS repo's Formula/ folder. The
+    # automatic GITHUB_TOKEN can write to the same repo, so no PAT or separate
+    # tap repo is needed. Install: brew install <raw Formula URL>.
     repository:
       owner: subhadeeproy3902
-      name: homebrew-paddle-ball
-      # Push with the PAT (HOMEBREW_TOKEN secret) — the automatic GITHUB_TOKEN
-      # is scoped to this repo only and can't write to the tap repo.
-      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+      name: paddle-ball
+      branch: main
     directory: Formula
-    # Tap repo + HOMEBREW_TOKEN secret are configured, so publish the formula.
     skip_upload: false
     homepage: "https://paddleball.mvp-subha.me"
     description: "A minimalist physics-based terminal paddleball game with score history"
@@ -77,6 +77,7 @@ brews:
     commit_author:
       name: goreleaserbot
       email: bot@goreleaser.com
+    commit_msg_template: "chore: homebrew formula for {{ .Tag }}"
     test: |
       system "#{bin}/paddle-ball version"
     install: |
@@ -103,22 +104,27 @@ nfpms:
       - src: ./README.md
         dst: /usr/share/doc/paddle-ball/README.md
 
-# Scoop (Windows). Generates the manifest as an artifact. To publish it for
-# `scoop install`, create a public `scoop-paddle-ball` bucket repo, add a token,
-# and set skip_upload: false.
+# Scoop (Windows). The manifest lives in THIS repo's bucket/ folder. Install:
+#   scoop install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/bucket/paddle-ball.json
 scoops:
   - name: paddle-ball
     repository:
       owner: subhadeeproy3902
-      name: scoop-paddle-ball
+      name: paddle-ball
+      branch: main
+    directory: bucket
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: "chore: scoop manifest for {{ .Tag }}"
     homepage: "https://paddleball.mvp-subha.me"
     description: "A minimalist physics-based terminal paddleball game with score history"
     license: MIT
-    skip_upload: true
+    skip_upload: false
 
-# WinGet (Windows). Generates the manifest as an artifact. Publishing to the
-# official catalog is a reviewed PR to microsoft/winget-pkgs; flip skip_upload
-# and point repository at your winget-pkgs fork when ready.
+# WinGet (Windows). Manifests are committed to THIS repo's manifests/ folder.
+# `winget install paddle-ball` from the official catalog needs a reviewed PR to
+# microsoft/winget-pkgs; from the folder here, use: winget install --manifest <dir>.
 winget:
   - name: paddle-ball
     publisher: subhadeeproy3902
@@ -129,9 +135,13 @@ winget:
     description: "Physics-based paddleball for the terminal — sub-stepped collisions, a spring-driven paddle, five themes, four modes, and a persistent score history."
     repository:
       owner: subhadeeproy3902
-      name: winget-pkgs
-      branch: "paddle-ball-{{ .Version }}"
-    skip_upload: true
+      name: paddle-ball
+      branch: main
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: "chore: winget manifest for {{ .Tag }}"
+    skip_upload: false
 
 # Note: snap packaging was removed from the release pipeline — building a .snap
 # requires the `snapcraft` toolchain, which isn't present on the GitHub runner

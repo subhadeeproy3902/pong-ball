@@ -41,31 +41,37 @@
 
 ---
 
-## Install
-
-### One-line (macOS / Linux)
+### macOS / Linux
 ```bash
+# one-line installer
 curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.sh | bash
+
+# Homebrew (formula is self-hosted in this repo's Formula/ folder)
+brew install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/Formula/paddle-ball.rb
 ```
 
-### Go install (any platform)
+### Windows
+```powershell
+# PowerShell one-liner
+irm https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/install.ps1 | iex
+
+# Scoop (manifest is self-hosted in this repo's bucket/ folder)
+scoop install https://raw.githubusercontent.com/subhadeeproy3902/paddle-ball/main/bucket/paddle-ball.json
+
+# WinGet — manifests live in this repo's manifests/ folder
+winget install --manifest manifests/s/subhadeeproy3902/paddle-ball
+```
+
+### Any platform
 ```bash
 go install github.com/subhadeeproy3902/paddle-ball@latest
-```
-
-### Docker (no install)
-```bash
 docker run --rm -it ghcr.io/subhadeeproy3902/paddle-ball:latest
 ```
 
-### Linux packages / Windows
-Grab a prebuilt binary, `.deb`/`.rpm`/`.apk`, or the Windows `.zip` from the
+Prebuilt binaries and `.deb`/`.rpm`/`.apk` packages are on the
 [releases page](https://github.com/subhadeeproy3902/paddle-ball/releases).
-
-### Homebrew (macOS / Linux)
-```bash
-brew install subhadeeproy3902/paddle-ball/paddle-ball
-```
+All package manifests (Homebrew/Scoop/WinGet) are kept **in this repo** —
+`Formula/`, `bucket/`, `manifests/` — and refreshed on every release.
 
 ---
 
