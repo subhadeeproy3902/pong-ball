@@ -18,3 +18,4 @@ tools/*_preview.html
 # OS
 .DS_Store
 Thumbs.db
+tools/t_*.html

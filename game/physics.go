@@ -3,6 +3,7 @@ package game
 import (
 	"math"
 	"math/rand"
+	"time"
 )
 
 // physics.go — sub-stepped continuous collision.
@@ -196,17 +197,40 @@ func (m *Model) handleMiss() {
 
 	m.requestSfx(SfxMiss)
 
-	if m.mode == ModeZen {
-		m.resetBallOnly()
-		return
+	switch m.mode {
+	case ModeZen:
+		// Infinite play — never yank the ball back to centre unasked. Ask.
+		m.enterBallLost(true, "Ball out", 0)
+	case ModeTimeTrial:
+		// Blitz — brief, visible resume so it never just teleports to centre.
+		m.enterBallLost(false, "Ball out", 2)
+	default: // Classic, Arcade
+		m.lives--
+		if m.lives <= 0 {
+			m.endGame()
+		} else {
+			m.enterBallLost(false, "You lost a ball", 3)
+		}
 	}
+}
 
-	m.lives--
-	if m.lives <= 0 {
-		m.endGame()
-	} else {
-		m.resetBallOnly()
-	}
+// enterBallLost pauses play and shows the ball-lost modal. choice=true waits for
+// the player (Zen); otherwise it auto-resumes after a count of `count`.
+func (m *Model) enterBallLost(choice bool, msg string, count int) {
+	m.appPhase = PhaseBallLost
+	m.lostChoice = choice
+	m.lostMsg = msg
+	m.resumeCount = count
+	m.resumeTTL = 0.85
+	m.ball.Trail = nil
+}
+
+// resumeGame serves a fresh ball and returns to play.
+func (m *Model) resumeGame() {
+	m.appPhase = PhasePlaying
+	m.lastTick = time.Now()
+	m.resetBallOnly()
+	m.requestSfx(SfxStart)
 }
 
 // resetBallOnly re-serves the ball from the top without touching paddle or score.

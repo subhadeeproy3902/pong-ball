@@ -26,12 +26,13 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.height = msg.Height
 		m.recalcPlayArea()
 		m.clampPaddleTarget()
+		return m, nil
 
-	// ── progress bar animation frames ──────────────────────────────────────
+	// ── progress bar animation frames (own chain, NOT a game tick) ─────────
 	case progress.FrameMsg:
 		bar, cmd := m.puBar.Update(msg)
 		m.puBar = bar.(progress.Model)
-		return m, tea.Batch(schedTick(), cmd)
+		return m, cmd
 
 	// ── keyboard ───────────────────────────────────────────────────────────
 	case tea.KeyMsg:
@@ -40,19 +41,22 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, tea.Quit
 		}
 		m = m.handleKey(msg)
+		return m, nil
 
 	// ── mouse: paddle follows the cursor while playing ─────────────────────
 	case tea.MouseMsg:
 		if m.appPhase == PhasePlaying {
 			m.setPaddleCenter(float64(msg.X))
 		}
+		return m, nil
 
-	// ── game tick ──────────────────────────────────────────────────────────
+	// ── game tick — the SINGLE source that re-arms the next tick ───────────
 	case TickMsg:
 		m = m.tick(time.Time(msg))
+		return m, schedTick()
 	}
 
-	return m, tea.Batch(schedTick(), m.flushBell())
+	return m, nil
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -137,6 +141,17 @@ func (m Model) handleKey(k tea.KeyMsg) Model {
 			m.startCountdown()
 		case "q", "Q":
 			m.appPhase = PhaseTitle
+		}
+
+	// ── BALL LOST (modal) ──────────────────────────────────────────────────
+	case PhaseBallLost:
+		switch ks {
+		case "enter", " ":
+			m.resumeGame() // continue (choice) / skip the countdown
+		case "m", "M":
+			m.toggleMute()
+		case "q", "Q", "esc":
+			m.endGame() // give up — record the run and show the summary
 		}
 
 	// ── GAME OVER ──────────────────────────────────────────────────────────
@@ -263,10 +278,41 @@ func (m *Model) reloadScores() {
 
 func (m Model) tick(now time.Time) Model {
 	switch m.appPhase {
+	case PhaseTitle:
+		m.titleFrame++
+		return m
 	case PhaseCountdown:
 		return m.tickCountdown(now)
 	case PhasePlaying:
 		return m.tickGame(now)
+	case PhaseBallLost:
+		return m.tickBallLost(now)
+	}
+	return m
+}
+
+// tickBallLost drives the auto-resume countdown. Choice modals (Zen) wait for a
+// keypress and ignore the clock.
+func (m Model) tickBallLost(now time.Time) Model {
+	if m.lostChoice {
+		m.lastTick = now
+		return m
+	}
+	if m.lastTick.IsZero() {
+		m.lastTick = now
+		return m
+	}
+	dt := now.Sub(m.lastTick).Seconds()
+	m.lastTick = now
+	m.resumeTTL -= dt
+	if m.resumeTTL <= 0 {
+		m.resumeCount--
+		m.resumeTTL = 0.85
+		if m.resumeCount > 0 {
+			m.requestSfx(SfxMenu)
+		} else {
+			m.resumeGame()
+		}
 	}
 	return m
 }

@@ -42,6 +42,8 @@ func (m Model) View() string {
 		return m.viewPlaying(t)
 	case PhasePaused:
 		return m.viewPaused(t)
+	case PhaseBallLost:
+		return m.viewBallLost(t)
 	case PhaseGameOver:
 		return m.viewGameOver(t)
 	case PhaseLeaderboard:
@@ -62,12 +64,20 @@ func (m Model) viewTooSmall(t *ui.Theme) string {
 // ─────────────────────────────────────────────────────────────────────────────
 
 func (m Model) viewTitle(t *ui.Theme) string {
-	// A quiet thematic motif — a ball above a paddle — instead of a shouty
-	// figlet banner. The accent appears only on the paddle.
-	motif := ui.SB(t.Ball).Render("        ●") + "\n\n" +
-		ui.SB(t.Paddle).Render("   ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
-	wordmark := ui.SB(t.Text).Render(spaced("PADDLEBALL"))
-	logo := lipgloss.JoinVertical(lipgloss.Center, motif, "", wordmark)
+	// Big gradient figlet wordmark when there's vertical room; a compact motif
+	// on short terminals.
+	var logo string
+	if m.height >= 30 {
+		off := float64(m.titleFrame) * 0.012
+		paddle := gradientArt(titlePaddle, t.Accent, t.Phase[4], off)
+		ball := gradientArt(titleBall, t.Accent, t.Phase[4], off+0.18)
+		logo = lipgloss.JoinVertical(lipgloss.Center, paddle, ball)
+	} else {
+		motif := ui.SB(t.Ball).Render("        ●") + "\n\n" +
+			ui.SB(t.Paddle).Render("   ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+		logo = lipgloss.JoinVertical(lipgloss.Center, motif, "",
+			ui.SB(t.Text).Render(spaced("PADDLEBALL")))
+	}
 	tagline := ui.S(t.Faint).Render(spaced("A TERMINAL PADDLE GAME"))
 
 	modes := []struct{ label, desc string }{
@@ -143,19 +153,16 @@ func (m Model) viewPlaying(t *ui.Theme) string {
 }
 
 func (m Model) buildHeader(t *ui.Theme) string {
-	left := ui.S(t.Muted).Render("PADDLEBALL") + ui.S(t.Faint).Render("  ·  "+m.mode.String())
-	right := ui.S(t.Faint).Render("SCORE ") + ui.SB(t.Accent).Render(fmt.Sprintf("%d", m.score)) +
+	mode := ui.S(t.Faint).Render(spaced(strings.ToUpper(m.mode.String())))
+	score := ui.S(t.Faint).Render("SCORE ") + ui.SB(t.Accent).Render(fmt.Sprintf("%d", m.score)) +
 		ui.S(t.Faint).Render("    BEST ") + ui.S(t.Muted).Render(fmt.Sprintf("%d", m.hiScore))
-	row1 := " " + spread(left, right, m.width-2)
+	row1 := " " + spread(mode, score, m.width-2)
 
-	var parts []string
-	parts = append(parts, ui.S(t.Phase[m.curPhase.Num-1]).Render(
-		fmt.Sprintf("PHASE %d %s", m.curPhase.Num, m.curPhase.Name)))
+	// Row 2: phase always; lives / time / streak only when they matter.
+	parts := []string{ui.S(t.Phase[m.curPhase.Num-1]).Render(
+		fmt.Sprintf("PHASE %d · %s", m.curPhase.Num, m.curPhase.Name))}
 	if m.mode == ModeArcade {
-		parts = append(parts, ui.S(t.Danger).Render("LIVES "+strings.Repeat("♥ ", m.lives)))
-	}
-	if m.streak >= 5 {
-		parts = append(parts, ui.S(t.Good).Render(fmt.Sprintf("STREAK ×%d", m.streak)))
+		parts = append(parts, ui.S(t.Danger).Render(strings.TrimSpace(strings.Repeat("♥ ", m.lives))))
 	}
 	if m.mode == ModeTimeTrial {
 		remain := m.timeLimit - m.elapsed
@@ -167,9 +174,12 @@ func (m Model) buildHeader(t *ui.Theme) string {
 		if secs <= 10 {
 			tc = t.Danger
 		}
-		parts = append(parts, ui.S(tc).Render(fmt.Sprintf("TIME %ds", secs)))
+		parts = append(parts, ui.S(tc).Render(fmt.Sprintf("%ds left", secs)))
 	}
-	row2 := " " + strings.Join(parts, "   ")
+	if m.streak >= 10 {
+		parts = append(parts, ui.S(t.Good).Render(fmt.Sprintf("×%d streak", m.streak)))
+	}
+	row2 := " " + strings.Join(parts, "    ")
 
 	return row1 + "\n" + row2
 }
@@ -185,9 +195,9 @@ func (m Model) buildFooter(t *ui.Theme) string {
 			left = name + ui.S(t.Good).Render(" ready")
 		}
 	} else {
-		left = ui.S(t.Faint).Render("←→/AD move   P pause   T theme   M sound   ? help   Q quit")
+		left = ui.S(t.Faint).Render("←→ move    P pause    ? help")
 	}
-	right := ui.S(t.Faint).Render("sound " + onOff(m.soundOn))
+	right := ui.S(t.Faint).Render("♪ " + onOff(m.soundOn))
 	return " " + spread(left, right, m.width-2)
 }
 
@@ -337,6 +347,58 @@ func (m Model) viewPaused(t *ui.Theme) string {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Ball lost — modal (continue? / resuming countdown)
+// ─────────────────────────────────────────────────────────────────────────────
+
+func (m Model) viewBallLost(t *ui.Theme) string {
+	ctr := lipgloss.NewStyle().Width(34).Align(lipgloss.Center)
+	var lines []string
+
+	if m.lostChoice {
+		lines = []string{
+			ui.SB(t.Accent).Render(spaced("BALL  OUT")),
+			"",
+			ui.S(t.Muted).Render(fmt.Sprintf("score %d", m.score)) +
+				ui.S(t.Faint).Render(fmt.Sprintf("   ·   best ×%d", m.maxStreak)),
+			"",
+			ui.S(t.Text).Render("Keep the rally going?"),
+			"",
+			ui.S(t.Faint).Render("⏎ continue        Q give up"),
+		}
+	} else {
+		head := "BALL OUT"
+		if m.mode == ModeArcade {
+			head = "YOU LOST A BALL"
+		}
+		lines = []string{ui.SB(t.Danger).Render(spaced(head)), ""}
+		if m.mode == ModeArcade {
+			word := "lives"
+			if m.lives == 1 {
+				word = "life"
+			}
+			lines = append(lines, ui.S(t.Muted).Render(fmt.Sprintf("%d %s left", m.lives, word)), "")
+		}
+		n := m.resumeCount
+		if n < 1 {
+			n = 1
+		}
+		lines = append(lines,
+			ui.S(t.Faint).Render("resuming in"),
+			ui.SB(t.Accent).Render(fmt.Sprintf("%d", n)),
+			"",
+			ui.S(t.Faint).Render("␣ skip        Q give up"),
+		)
+	}
+
+	content := ctr.Render(strings.Join(lines, "\n"))
+	box := lipgloss.NewStyle().
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(lipgloss.Color(t.Border)).
+		Padding(1, 3).Render(content)
+	return lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, box)
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Game Over
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -481,6 +543,56 @@ func spread(left, right string, width int) string {
 		gap = 1
 	}
 	return left + strings.Repeat(" ", gap) + right
+}
+
+// hexToRGB parses "#rrggbb" into 0–255 components.
+func hexToRGB(hex string) (int, int, int) {
+	hex = strings.TrimPrefix(hex, "#")
+	if len(hex) != 6 {
+		return 255, 255, 255
+	}
+	var r, g, b int
+	fmt.Sscanf(hex, "%02x%02x%02x", &r, &g, &b)
+	return r, g, b
+}
+
+// gradientArt colorises ASCII art with an animated horizontal gradient between
+// two theme colors. It emits truecolor ANSI per glyph (spaces left bare) — cheap
+// to rebuild each frame and only used on the title screen. `offset` shifts the
+// gradient phase to make it shimmer over time.
+func gradientArt(lines []string, hexA, hexB string, offset float64) string {
+	r1, g1, b1 := hexToRGB(hexA)
+	r2, g2, b2 := hexToRGB(hexB)
+	maxW := 1
+	for _, l := range lines {
+		if len(l) > maxW {
+			maxW = len(l)
+		}
+	}
+	lerp := func(a, b int, t float64) int { return a + int((float64(b-a))*t) }
+	var sb strings.Builder
+	for li, line := range lines {
+		for x := 0; x < len(line); x++ {
+			ch := line[x]
+			if ch == ' ' {
+				sb.WriteByte(' ')
+				continue
+			}
+			t := float64(x)/float64(maxW-1) + offset
+			t -= math.Floor(t)        // wrap to [0,1)
+			if tw := t * 2; tw <= 1 { // triangle wave → smooth back-and-forth
+				t = tw
+			} else {
+				t = 2 - tw
+			}
+			fmt.Fprintf(&sb, "\x1b[1;38;2;%d;%d;%dm%c", lerp(r1, r2, t), lerp(g1, g2, t), lerp(b1, b2, t), ch)
+		}
+		sb.WriteString("\x1b[0m")
+		if li < len(lines)-1 {
+			sb.WriteByte('\n')
+		}
+	}
+	return sb.String()
 }
 
 // spaced inserts thin spacing between letters for a quiet, editorial caps look.

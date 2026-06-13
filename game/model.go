@@ -49,6 +49,7 @@ const (
 	PhaseCountdown
 	PhasePlaying
 	PhasePaused
+	PhaseBallLost // ball went out — modal: continue? / resuming countdown
 	PhaseGameOver
 	PhaseLeaderboard
 	PhaseHelp
@@ -188,9 +189,10 @@ type Model struct {
 	playW, playH  int // play-area dimensions (inside header/footer/walls)
 
 	// ── screen state machine ───────────────────────────────────────────────
-	appPhase AppPhase
-	mode     GameMode
-	menuSel  int // title-screen cursor (0–3)
+	appPhase   AppPhase
+	mode       GameMode
+	menuSel    int // title-screen cursor (0–3)
+	titleFrame int // animation counter for the title gradient shimmer
 
 	// ── ball ───────────────────────────────────────────────────────────────
 	ball Ball
@@ -248,6 +250,12 @@ type Model struct {
 	countdown int
 	cdTTL     float64
 
+	// ── ball-lost modal (PhaseBallLost) ────────────────────────────────────
+	lostChoice  bool    // true = "continue?" prompt (Zen); false = auto-resume countdown
+	lostMsg     string  // headline shown in the modal
+	resumeCount int     // 3 … 2 … 1 for the auto-resume countdown
+	resumeTTL   float64 // seconds left on the current count
+
 	// ── phase-transition banner ────────────────────────────────────────────
 	bannerText  string
 	bannerColor string
@@ -259,10 +267,9 @@ type Model struct {
 	// ── theme ──────────────────────────────────────────────────────────────
 	themeIdx int
 
-	// ── sound (terminal bell SFX) ──────────────────────────────────────────
+	// ── sound ──────────────────────────────────────────────────────────────
 	soundOn   bool
-	bellCount int     // bells to ring on the next render flush (drained in Update)
-	hitBellCD float64 // cooldown so rapid rallies don't machine-gun the bell
+	hitBellCD float64 // cooldown so rapid rallies don't machine-gun the hit sound
 
 	// ── store / leaderboard ────────────────────────────────────────────────
 	st           *store.Store
@@ -318,6 +325,9 @@ func NewModel(modeStr, themeStr string) Model {
 		st:           st,
 		hiScore:      st.HiScore(""),
 	}
+
+	// Prepare sounds off the hot path; ready well before the first SFX.
+	go initAudio()
 
 	if jumpToGame {
 		m.startCountdown()
@@ -377,7 +387,6 @@ func (m *Model) startPlaying() {
 	m.catchesSinceLastPU = 0
 	m.bannerTTL = 0
 	m.hitBellCD = 0
-	m.bellCount = 0
 	m.curPhase = Phases[0]
 
 	switch m.mode {
