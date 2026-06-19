@@ -91,18 +91,26 @@ Each `v*` tag produces, attached to the GitHub Release:
 
 ## 5. Install paths, per platform
 
-| Platform | Command |
-|---|---|
-| macOS / Linux | `curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh \| sh` |
-| Any Go env | `go install github.com/subhadeeproy3902/pong-ball@latest` |
-| Docker | `docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest` |
-| Debian/Ubuntu | download the `.deb` from Releases → `sudo dpkg -i pong-ball_*.deb` |
-| Fedora/RHEL | download the `.rpm` → `sudo rpm -i pong-ball_*.rpm` |
-| Alpine | download the `.apk` → `sudo apk add --allow-untrusted pong-ball_*.apk` |
-| Windows | download the `.zip` from Releases, unzip, add the folder to `PATH` (or `go install`) |
+The README and website advertise the package-manager commands below. Most need
+the package to be published to that registry first — the **Status** column says
+what works *today* vs. what still needs publishing (see §6–§7 and §8).
+
+| Command (advertised) | Status today | To make it work |
+|---|---|---|
+| `go install github.com/subhadeeproy3902/pong-ball@latest` | ✅ works | nothing — module is public |
+| `curl -sSL …/install.sh` piped to `sh` | ✅ works | nothing — script pulls latest release |
+| download `.deb` / `.rpm` / `.apk` from Releases | ✅ works | nothing — GoReleaser builds them |
+| `brew install pong-ball` | ⚠️ tap form only | publish to a tap/core (see §6) |
+| `scoop install pong-ball` / `winget install pong-ball` | ⚠️ manifest only | flip `skip_upload` + bucket/PR (see §7) |
+| `choco install pong-ball` | ❌ not yet | push a `.nupkg` to the Chocolatey gallery |
+| `sudo apt/dnf/zypper/pacman/apk install pong-ball` | ❌ not yet | get into a distro repo or host an APT/RPM repo |
+| `pkg install pong-ball` (FreeBSD) | ❌ not yet | submit a FreeBSD port |
+| `sudo snap install pong-ball` / `flatpak install pong-ball` | ❌ not yet | publish to Snapcraft / Flathub |
+| `nix-env -iA nixpkgs.pong-ball` | ❌ not yet | merge a derivation into nixpkgs |
+| `sudo port install pong-ball` (MacPorts) | ❌ not yet | submit a MacPorts Portfile |
 
 The `install.sh` script auto-detects OS + arch and pulls the matching archive
-from the latest release.
+from the latest release. See §8 for what each "not yet" channel involves.
 
 ---
 
@@ -138,7 +146,43 @@ To make `scoop install` / `winget install` work:
 
 ---
 
-## 8. Test the release pipeline locally (no tag, no publish)
+## 8. Publishing to more package managers
+
+The commands the README/site advertise (`apt`, `dnf`, `pacman`, `choco`,
+`snap`, `flatpak`, `nix`, `pkg`, `port`, …) only resolve once `pong-ball` is
+actually published to each ecosystem. None of these are automatic — each is its
+own (often slow, sometimes review-gated) submission. What each one needs:
+
+- **Homebrew core** (`brew install pong-ball`, no tap) — submit to
+  `homebrew/homebrew-core`; needs notability (GitHub stars/usage) to be accepted.
+  Until then the tap form in §6 is the working install.
+- **Chocolatey** (`choco install pong-ball`) — build a `.nupkg` (nuspec +
+  install script) and `choco push` to the community gallery; first submission is
+  moderated. GoReleaser has a `chocolateys:` block you can enable.
+- **Scoop / WinGet** (bare names) — see §7; flip `skip_upload` and provide the
+  bucket repo / winget-pkgs fork.
+- **Debian/Ubuntu `apt`, Fedora `dnf`, openSUSE `zypper`** — either get accepted
+  into the distro's repos (long), or host your own APT/RPM repo and have users
+  add it first. The `.deb`/`.rpm` on the Releases page already work via manual
+  `dpkg -i` / `rpm -i`.
+- **Arch `pacman`** — for `pacman -S` it must be in the official repos; the
+  realistic path is a published **AUR** package (`yay -S pong-ball`).
+- **Alpine `apk`** — submit an `APKBUILD` to aports. The `.apk` artifact already
+  installs with `apk add --allow-untrusted`.
+- **FreeBSD `pkg`** — submit a port to the FreeBSD ports tree.
+- **Snap** — package with snapcraft and publish to the Snap Store. (The old
+  `snapcrafts:` block was removed; re-add it with a snapcraft build step.)
+- **Flatpak** — write a Flatpak manifest and submit to Flathub.
+- **Nix / nixpkgs** — write a `buildGoModule` derivation and open a PR to
+  `nixos/nixpkgs`; `nix-env -iA nixpkgs.pong-ball` works only after it merges.
+- **MacPorts** — submit a Portfile to the macports-ports tree.
+
+Until a channel is live, point users at the ✅ rows in §5 (Go, install script,
+prebuilt packages, Homebrew tap, Scoop/WinGet manifests).
+
+---
+
+## 9. Test the release pipeline locally (no tag, no publish)
 
 ```bash
 go install github.com/goreleaser/goreleaser/v2@latest

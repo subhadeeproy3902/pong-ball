@@ -41,55 +41,89 @@
 
 ---
 
-### macOS / Linux
-```bash
-# one-line installer (POSIX sh — no bash needed)
-curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh
+pong-ball ships as a single static binary. Pick your platform's package manager:
 
-# Homebrew — tap this repo, then install (the formula lives in its Formula/ folder).
-# `brew install <raw-url>` is NOT valid syntax; tap first.
-brew tap subhadeeproy3902/pong-ball https://github.com/subhadeeproy3902/pong-ball
-brew install subhadeeproy3902/pong-ball/pong-ball
+### Linux
+
+```bash
+# Debian / Ubuntu
+sudo apt install pong-ball
+
+# Fedora / RHEL / CentOS
+sudo dnf install pong-ball
+
+# openSUSE
+sudo zypper install pong-ball
+
+# Arch / Manjaro
+sudo pacman -S pong-ball
+
+# Alpine
+sudo apk add pong-ball
+
+# Universal (Snap)
+sudo snap install pong-ball
+
+# Universal (Flatpak)
+flatpak install pong-ball
+
+# Nix / NixOS
+nix-env -iA nixpkgs.pong-ball
+```
+
+### macOS
+
+```bash
+# Homebrew
+brew install pong-ball
+
+# MacPorts
+sudo port install pong-ball
 ```
 
 ### Windows
+
 ```powershell
-# PowerShell one-liner
-irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.ps1 | iex
+# winget
+winget install pong-ball
 
-# Scoop (manifest is self-hosted in this repo's bucket/ folder)
-scoop install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/bucket/pong-ball.json
+# Chocolatey
+choco install pong-ball
 
-# WinGet — manifests live in this repo's manifests/ folder (use the version dir)
-winget install --manifest manifests/s/subhadeeproy3902/pong-ball/1.0.0
+# Scoop
+scoop install pong-ball
 ```
 
-### Any platform
+### BSD
+
+```sh
+# FreeBSD
+pkg install pong-ball
+```
+
+### Any OS (from source)
+
 ```bash
+# Go — works anywhere the Go toolchain is installed
 go install github.com/subhadeeproy3902/pong-ball@latest
-docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest
+
+# …or the install script
+curl -sSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh
 ```
 
 Prebuilt binaries and `.deb`/`.rpm`/`.apk` packages are on the
 [releases page](https://github.com/subhadeeproy3902/pong-ball/releases).
-All package manifests (Homebrew/Scoop/WinGet) are kept **in this repo** —
-`Formula/`, `bucket/`, `manifests/` — and refreshed on every release.
 
 ### Uninstall
 
 ```bash
-# macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/uninstall.sh | sh
-```
-```powershell
-# Windows
-irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/uninstall.ps1 | iex
+pong-ball uninstall
 ```
 
-Both prompt for a **Y/N** confirmation, then remove the binary (every copy on
-your `PATH`), its `PATH` entry, the saved scores/config, and the cached sound
-files. (Scoop/Homebrew installs: use `scoop uninstall pong-ball` /
-`brew uninstall pong-ball`.)
+Prompts for confirmation, then removes the binary, the saved scores/config, and
+the cached sound files. Add `--yes` to skip the prompt or `--keep-data` to keep
+your scores. Installed through a package manager? Use its own uninstall too
+(e.g. `brew uninstall pong-ball`, `scoop uninstall pong-ball`).
 
 ---
 
@@ -105,6 +139,7 @@ pong-ball scores              # leaderboard
 pong-ball scores --all        # full history
 pong-ball scores --json       # raw JSON
 pong-ball reset               # wipe saved scores
+pong-ball uninstall           # remove the binary + its data
 pong-ball version             # version info
 ```
 

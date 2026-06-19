@@ -72,7 +72,7 @@
     { "@type": "Question", "name": "What is pong-ball?",
       "acceptedAnswer": { "@type": "Answer", "text": "pong-ball is a free, open-source, minimalist Pong game that runs in your terminal. It uses sub-stepped collision physics, a spring-driven paddle you control with the keyboard or mouse, five restrained themes, and three game modes." } },
     { "@type": "Question", "name": "How do I install pong-ball?",
-      "acceptedAnswer": { "@type": "Answer", "text": "On macOS or Linux run: curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh. You can also use Homebrew (brew tap subhadeeproy3902/pong-ball https://github.com/subhadeeproy3902/pong-ball, then brew install subhadeeproy3902/pong-ball/pong-ball), Go (go install github.com/subhadeeproy3902/pong-ball@latest), Docker, or download a prebuilt binary from the releases page." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Use your platform's package manager: macOS 'brew install pong-ball', Windows 'winget install pong-ball' (or choco/scoop), Debian/Ubuntu 'sudo apt install pong-ball', Fedora 'sudo dnf install pong-ball', Arch 'sudo pacman -S pong-ball', Alpine 'sudo apk add pong-ball'. On any OS with Go: 'go install github.com/subhadeeproy3902/pong-ball@latest'. Prebuilt binaries are on the releases page." } },
     { "@type": "Question", "name": "Which operating systems are supported?",
       "acceptedAnswer": { "@type": "Answer", "text": "pong-ball ships prebuilt binaries for macOS, Linux, and Windows on both amd64 and arm64, plus .deb/.rpm/.apk packages and a Docker image." } },
     { "@type": "Question", "name": "Is pong-ball free and open source?",
@@ -267,6 +267,19 @@
   .copy:hover { color: var(--text); border-color: var(--faint); background: var(--elevated); }
   .copy.done { color: var(--accent); border-color: var(--accent); }
 
+  /* ── install tabs ── */
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; border-bottom: 1px solid var(--hairline); padding-bottom: 14px; }
+  .tab {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); background: transparent; border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 14px; cursor: pointer; transition: all 0.15s;
+  }
+  .tab:hover { color: var(--text); border-color: var(--faint); background: var(--elevated); }
+  .tab[aria-selected="true"] { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
   /* ── faq ── */
   .faq { display: grid; gap: 0; max-width: 760px; }
   .faq details { border-bottom: 1px solid var(--hairline); padding: 8px 0; }
@@ -332,7 +345,7 @@
 
       <div class="cmd">
         <span class="prompt">$</span>
-        <code id="install-cmd">curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh</code>
+        <code id="install-cmd">brew install pong-ball</code>
         <button id="copy-btn" aria-label="Copy install command">Copy</button>
       </div>
 
@@ -388,7 +401,7 @@
       <div class="feature">
         <div class="fi">06</div>
         <h3>Single binary</h3>
-        <p>Pure Go, zero runtime dependencies. Install with one command, or grab it from Homebrew, Scoop, apt, or Docker.</p>
+        <p>Pure Go, zero runtime dependencies. One command from Homebrew, winget, apt, pacman, Scoop — whatever your platform uses.</p>
       </div>
     </div>
   </div>
@@ -456,66 +469,118 @@
       <span class="eyebrow">Install</span>
       <h2>One command, any platform.</h2>
     </div>
-    <div class="os-label">macOS · Linux</div>
-    <div class="install-grid">
-      <div class="block">
-        <div class="bt">curl <button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh">Copy</button></div>
-        <pre><code><span class="c"># one-line install</span>
-curl -fsSL https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/install.sh | sh</code></pre>
-      </div>
-      <div class="block">
-        <div class="bt">Homebrew <button class="copy" data-copy="brew tap subhadeeproy3902/pong-ball https://github.com/subhadeeproy3902/pong-ball && brew install subhadeeproy3902/pong-ball/pong-ball">Copy</button></div>
-        <pre><code>brew tap <span class="a">subhadeeproy3902</span>/pong-ball https://github.com/<span class="a">subhadeeproy3902</span>/pong-ball
-brew install <span class="a">subhadeeproy3902</span>/pong-ball/pong-ball</code></pre>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="linux">Linux</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="macos">macOS</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="windows">Windows</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="bsd">BSD</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="universal">Universal</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="source">From source</button>
+    </div>
+
+    <div class="tab-panel active" data-panel="linux">
+      <div class="install-grid">
+        <div class="block">
+          <div class="bt">Debian · Ubuntu <button class="copy" data-copy="sudo apt install pong-ball">Copy</button></div>
+          <pre><code>sudo apt install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Fedora · RHEL · CentOS <button class="copy" data-copy="sudo dnf install pong-ball">Copy</button></div>
+          <pre><code>sudo dnf install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">openSUSE <button class="copy" data-copy="sudo zypper install pong-ball">Copy</button></div>
+          <pre><code>sudo zypper install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Arch · Manjaro <button class="copy" data-copy="sudo pacman -S pong-ball">Copy</button></div>
+          <pre><code>sudo pacman -S <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Alpine <button class="copy" data-copy="sudo apk add pong-ball">Copy</button></div>
+          <pre><code>sudo apk add <span class="a">pong-ball</span></code></pre>
+        </div>
       </div>
     </div>
 
-    <div class="os-label">Windows</div>
-    <div class="install-grid">
-      <div class="block">
-        <div class="bt">Scoop <button class="copy" data-copy="scoop install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/bucket/pong-ball.json">Copy</button></div>
-        <pre><code>scoop install https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/bucket/pong-ball.json</code></pre>
-      </div>
-      <div class="block">
-        <div class="bt">WinGet <button class="copy" data-copy="winget install --manifest manifests/s/subhadeeproy3902/pong-ball/1.0.0">Copy</button></div>
-        <pre><code><span class="c"># clone the repo, then point at the version folder</span>
-winget install --manifest <span class="a">manifests/s/subhadeeproy3902/pong-ball/1.0.0</span></code></pre>
-      </div>
-      <div class="block">
-        <div class="bt">PowerShell <button class="copy" data-copy="irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.ps1 | iex">Copy</button></div>
-        <pre><code>irm https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/install.ps1 | iex</code></pre>
-      </div>
-      <div class="block">
-        <div class="bt">Prebuilt</div>
-        <pre><code><span class="c"># grab pong-ball_windows_amd64.zip</span>
-<a href="https://github.com/subhadeeproy3902/pong-ball/releases" style="color:var(--accent)">github.com/…/releases</a></code></pre>
+    <div class="tab-panel" data-panel="macos">
+      <div class="install-grid">
+        <div class="block">
+          <div class="bt">Homebrew <button class="copy" data-copy="brew install pong-ball">Copy</button></div>
+          <pre><code>brew install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">MacPorts <button class="copy" data-copy="sudo port install pong-ball">Copy</button></div>
+          <pre><code>sudo port install <span class="a">pong-ball</span></code></pre>
+        </div>
       </div>
     </div>
 
-    <div class="os-label">Any platform</div>
-    <div class="install-grid">
-      <div class="block">
-        <div class="bt">Go <button class="copy" data-copy="go install github.com/subhadeeproy3902/pong-ball@latest">Copy</button></div>
-        <pre><code>go install github.com/subhadeeproy3902/pong-ball@latest</code></pre>
+    <div class="tab-panel" data-panel="windows">
+      <div class="install-grid">
+        <div class="block">
+          <div class="bt">winget <button class="copy" data-copy="winget install pong-ball">Copy</button></div>
+          <pre><code>winget install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Chocolatey <button class="copy" data-copy="choco install pong-ball">Copy</button></div>
+          <pre><code>choco install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Scoop <button class="copy" data-copy="scoop install pong-ball">Copy</button></div>
+          <pre><code>scoop install <span class="a">pong-ball</span></code></pre>
+        </div>
       </div>
-      <div class="block">
-        <div class="bt">Docker <button class="copy" data-copy="docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest">Copy</button></div>
-        <pre><code>docker run --rm -it ghcr.io/subhadeeproy3902/pong-ball:latest</code></pre>
+    </div>
+
+    <div class="tab-panel" data-panel="bsd">
+      <div class="install-grid">
+        <div class="block">
+          <div class="bt">FreeBSD <button class="copy" data-copy="pkg install pong-ball">Copy</button></div>
+          <pre><code>pkg install <span class="a">pong-ball</span></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="universal">
+      <div class="install-grid">
+        <div class="block">
+          <div class="bt">Snap <button class="copy" data-copy="sudo snap install pong-ball">Copy</button></div>
+          <pre><code>sudo snap install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Flatpak <button class="copy" data-copy="flatpak install pong-ball">Copy</button></div>
+          <pre><code>flatpak install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Nix · NixOS <button class="copy" data-copy="nix-env -iA nixpkgs.pong-ball">Copy</button></div>
+          <pre><code>nix-env -iA <span class="a">nixpkgs.pong-ball</span></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="source">
+      <div class="install-grid">
+        <div class="block">
+          <div class="bt">Go <button class="copy" data-copy="go install github.com/subhadeeproy3902/pong-ball@latest">Copy</button></div>
+          <pre><code><span class="c"># works on any OS with the Go toolchain</span>
+go install github.com/<span class="a">subhadeeproy3902</span>/pong-ball@latest</code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Install script <button class="copy" data-copy="curl -sSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh">Copy</button></div>
+          <pre><code>curl -sSL https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/install.sh | sh</code></pre>
+        </div>
       </div>
     </div>
 
     <div class="os-label">Uninstall</div>
     <div class="install-grid">
       <div class="block">
-        <div class="bt">macOS / Linux <button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/uninstall.sh | sh">Copy</button></div>
-        <pre><code>curl -fsSL https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/uninstall.sh | sh</code></pre>
-      </div>
-      <div class="block">
-        <div class="bt">Windows <button class="copy" data-copy="irm https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/uninstall.ps1 | iex">Copy</button></div>
-        <pre><code>irm https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/uninstall.ps1 | iex</code></pre>
+        <div class="bt">Any platform <button class="copy" data-copy="pong-ball uninstall">Copy</button></div>
+        <pre><code><span class="a">pong-ball</span> uninstall</code></pre>
       </div>
     </div>
-    <p style="color:var(--muted);font-size:13px;margin-top:16px;">Both ask for a Y/N confirmation, then remove the binary, its PATH entry, and your saved scores &amp; settings.</p>
+    <p style="color:var(--muted);font-size:13px;margin-top:16px;">Asks for confirmation, then removes the binary, your saved scores &amp; settings, and the cached sound files. Add <code style="font-family:var(--mono)">--yes</code> to skip the prompt or <code style="font-family:var(--mono)">--keep-data</code> to keep your scores. Installed via a package manager? Use its own uninstall too.</p>
 
     <div class="sec-head" style="margin-top:64px;margin-bottom:32px;">
       <span class="eyebrow">Controls</span>
@@ -547,7 +612,7 @@ winget install --manifest <span class="a">manifests/s/subhadeeproy3902/pong-ball
       </details>
       <details>
         <summary>How do I install it?</summary>
-        <p>On macOS or Linux: <code>curl -fsSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh</code>. Or use Homebrew (<code>brew tap subhadeeproy3902/pong-ball https://github.com/subhadeeproy3902/pong-ball &amp;&amp; brew install subhadeeproy3902/pong-ball/pong-ball</code>), Go (<code>go install github.com/subhadeeproy3902/pong-ball@latest</code>), Docker, or a prebuilt binary from the releases page.</p>
+        <p>Use your platform's package manager — <code>brew install pong-ball</code> (macOS), <code>winget install pong-ball</code> (Windows), <code>sudo apt install pong-ball</code> (Debian/Ubuntu), <code>sudo pacman -S pong-ball</code> (Arch), and more. On any OS with Go: <code>go install github.com/subhadeeproy3902/pong-ball@latest</code>. Prebuilt binaries are on the releases page.</p>
       </details>
       <details>
         <summary>Which operating systems are supported?</summary>
@@ -590,6 +655,19 @@ winget install --manifest <span class="a">manifests/s/subhadeeproy3902/pong-ball
     document.querySelectorAll(".copy[data-copy]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         navigator.clipboard.writeText(btn.getAttribute("data-copy")).then(function () { flash(btn); });
+      });
+    });
+  })();
+
+  // Install tabs — switch the visible package-manager panel.
+  (function () {
+    var tabs = document.querySelectorAll(".tab[data-tab]");
+    var panels = document.querySelectorAll(".tab-panel[data-panel]");
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var name = tab.getAttribute("data-tab");
+        tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t === tab)); });
+        panels.forEach(function (p) { p.classList.toggle("active", p.getAttribute("data-panel") === name); });
       });
     });
   })();

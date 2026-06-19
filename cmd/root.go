@@ -141,7 +141,11 @@ func Execute(version, commit, date string) {
 		},
 	}
 
-	root.AddCommand(playCmd, scoresCmd, resetCmd, versionCmd)
+	// Hide the auto-generated `completion` command — we don't ship shell
+	// completion scripts, so it only clutters `--help`.
+	root.CompletionOptions.DisableDefaultCmd = true
+
+	root.AddCommand(playCmd, scoresCmd, resetCmd, versionCmd, uninstallCmd())
 	if err := root.Execute(); err != nil {
 		os.Exit(1)
 	}

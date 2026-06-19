@@ -153,6 +153,9 @@ func (s *Store) saveConfig(c Config) {
 	_ = os.WriteFile(s.configFile, data, 0o644)
 }
 
+// DataDir returns the directory where scores and config are stored.
+func DataDir() string { return dataDir() }
+
 func dataDir() string {
 	if runtime.GOOS == "windows" {
 		if appdata := os.Getenv("APPDATA"); appdata != "" {
