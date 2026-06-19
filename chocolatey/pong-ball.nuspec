@@ -8,7 +8,7 @@
     <title>Pong Ball</title>
     <authors>Subhadeep Roy</authors>
     <projectUrl>https://github.com/subhadeeproy3902/pong-ball</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/assets/icon-512.png</iconUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/subhadeeproy3902/pong-ball@main/assets/icon-512.png</iconUrl>
     <copyright>2026 Subhadeep Roy</copyright>
     <licenseUrl>https://github.com/subhadeeproy3902/pong-ball/blob/main/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

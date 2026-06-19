@@ -54,7 +54,8 @@ winget install pong-ball
 # Chocolatey
 choco install pong-ball
 
-# Scoop
+# Scoop (from this repo's bucket)
+scoop bucket add pong-ball https://github.com/subhadeeproy3902/pong-ball
 scoop install pong-ball
 ```
 

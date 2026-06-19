@@ -27,7 +27,7 @@ Install one of these ways:
 
 - Windows (winget): `winget install pong-ball`
 - Windows (Chocolatey): `choco install pong-ball`
-- Windows (Scoop): `scoop install pong-ball`
+- Windows (Scoop): `scoop bucket add pong-ball https://github.com/subhadeeproy3902/pong-ball` then `scoop install pong-ball`
 - macOS (Homebrew, one command): `brew install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/Formula/pong-ball.rb`
 - Linux / macOS (install script): `curl -sSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh`
 - Any OS with the Go toolchain: `go install github.com/subhadeeproy3902/pong-ball@latest`
