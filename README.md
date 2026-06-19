@@ -41,45 +41,9 @@
 
 ---
 
-pong-ball ships as a single static binary. Pick your platform's package manager:
+## Install
 
-### Linux
-
-```bash
-# Debian / Ubuntu
-sudo apt install pong-ball
-
-# Fedora / RHEL / CentOS
-sudo dnf install pong-ball
-
-# openSUSE
-sudo zypper install pong-ball
-
-# Arch / Manjaro
-sudo pacman -S pong-ball
-
-# Alpine
-sudo apk add pong-ball
-
-# Universal (Snap)
-sudo snap install pong-ball
-
-# Universal (Flatpak)
-flatpak install pong-ball
-
-# Nix / NixOS
-nix-env -iA nixpkgs.pong-ball
-```
-
-### macOS
-
-```bash
-# Homebrew
-brew install pong-ball
-
-# MacPorts
-sudo port install pong-ball
-```
+pong-ball ships as a single static binary.
 
 ### Windows
 
@@ -87,31 +51,29 @@ sudo port install pong-ball
 # winget
 winget install pong-ball
 
-# Chocolatey
-choco install pong-ball
-
 # Scoop
 scoop install pong-ball
 ```
 
-### BSD
-
-```sh
-# FreeBSD
-pkg install pong-ball
-```
-
-### Any OS (from source)
+### macOS
 
 ```bash
-# Go — works anywhere the Go toolchain is installed
-go install github.com/subhadeeproy3902/pong-ball@latest
-
-# …or the install script
-curl -sSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh
+# Homebrew — add the tap, then install
+brew tap subhadeeproy3902/pong-ball https://github.com/subhadeeproy3902/pong-ball
+brew install subhadeeproy3902/pong-ball/pong-ball
 ```
 
-Prebuilt binaries and `.deb`/`.rpm`/`.apk` packages are on the
+### Linux / any OS
+
+```bash
+# install script — fetches the right prebuilt binary (macOS & Linux)
+curl -sSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh
+
+# …or, anywhere the Go toolchain is installed
+go install github.com/subhadeeproy3902/pong-ball@latest
+```
+
+Prebuilt binaries — plus `.deb`, `.rpm`, and `.apk` packages — are on the
 [releases page](https://github.com/subhadeeproy3902/pong-ball/releases).
 
 ### Uninstall

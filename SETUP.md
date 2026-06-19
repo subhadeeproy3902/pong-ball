@@ -91,17 +91,20 @@ Each `v*` tag produces, attached to the GitHub Release:
 
 ## 5. Install paths, per platform
 
-The README and website advertise the package-manager commands below. Most need
-the package to be published to that registry first — the **Status** column says
-what works *today* vs. what still needs publishing (see §6–§7 and §8).
+The README and website now advertise **only the commands that work today** (the
+✅ rows below, plus the Homebrew *tap* form). The remaining rows are the
+publishing roadmap — the **Status** column says what works *today* vs. what still
+needs publishing (see §6–§7 and §8).
 
-| Command (advertised) | Status today | To make it work |
+| Command | Status today | To make it work |
 |---|---|---|
 | `go install github.com/subhadeeproy3902/pong-ball@latest` | ✅ works | nothing — module is public |
 | `curl -sSL …/install.sh` piped to `sh` | ✅ works | nothing — script pulls latest release |
 | download `.deb` / `.rpm` / `.apk` from Releases | ✅ works | nothing — GoReleaser builds them |
-| `brew install pong-ball` | ⚠️ tap form only | publish to a tap/core (see §6) |
-| `scoop install pong-ball` / `winget install pong-ball` | ⚠️ manifest only | flip `skip_upload` + bucket/PR (see §7) |
+| `brew install subhadeeproy3902/pong-ball/pong-ball` (tap) | ✅ works | nothing — tap is live (see §6) |
+| `brew install pong-ball` (no tap) | 🔒 gated | homebrew-core needs 30 forks / 30 watchers / 75 stars (see §6) |
+| `winget install pong-ball` | ⏳ [PR #390476](https://github.com/microsoft/winget-pkgs/pull/390476) | awaiting merge into `microsoft/winget-pkgs` |
+| `scoop install pong-ball` | ⏳ [PR #18079](https://github.com/ScoopInstaller/Extras/pull/18079) | awaiting merge into `ScoopInstaller/Extras` |
 | `choco install pong-ball` | ❌ not yet | push a `.nupkg` to the Chocolatey gallery |
 | `sudo apt/dnf/zypper/pacman/apk install pong-ball` | ❌ not yet | get into a distro repo or host an APT/RPM repo |
 | `pkg install pong-ball` (FreeBSD) | ❌ not yet | submit a FreeBSD port |
