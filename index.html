@@ -72,7 +72,7 @@
     { "@type": "Question", "name": "What is pong-ball?",
       "acceptedAnswer": { "@type": "Answer", "text": "pong-ball is a free, open-source, minimalist Pong game that runs in your terminal. It uses sub-stepped collision physics, a spring-driven paddle you control with the keyboard or mouse, five restrained themes, and three game modes." } },
     { "@type": "Question", "name": "How do I install pong-ball?",
-      "acceptedAnswer": { "@type": "Answer", "text": "On any OS with Go: 'go install github.com/subhadeeproy3902/pong-ball@latest'. On Windows: 'winget install pong-ball' or 'scoop install pong-ball'. On macOS, tap the formula: 'brew tap subhadeeproy3902/pong-ball https://github.com/subhadeeproy3902/pong-ball' then 'brew install subhadeeproy3902/pong-ball/pong-ball'. On Linux: 'curl -sSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh'. Prebuilt binaries and .deb/.rpm/.apk packages are on the releases page." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "On any OS with Go: 'go install github.com/subhadeeproy3902/pong-ball@latest'. On Windows: 'winget install pong-ball', 'choco install pong-ball', or 'scoop install pong-ball'. On macOS, one command: 'brew install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/Formula/pong-ball.rb'. On Linux: 'curl -sSL https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/install.sh | sh'. Prebuilt binaries and .deb/.rpm/.apk packages are on the releases page." } },
     { "@type": "Question", "name": "Which operating systems are supported?",
       "acceptedAnswer": { "@type": "Answer", "text": "pong-ball ships prebuilt binaries for macOS, Linux, and Windows on both amd64 and arm64, plus .deb/.rpm/.apk packages and a Docker image." } },
     { "@type": "Question", "name": "Is pong-ball free and open source?",
@@ -401,7 +401,7 @@
       <div class="feature">
         <div class="fi">06</div>
         <h3>Single binary</h3>
-        <p>Pure Go, zero runtime dependencies. One command with <code>go install</code>, the Homebrew tap, winget, or Scoop — or a single curl-pipe script.</p>
+        <p>Pure Go, zero runtime dependencies. One command with <code>go install</code>, Homebrew, winget, Chocolatey, or Scoop — or a single curl-pipe script.</p>
       </div>
     </div>
   </div>
@@ -494,12 +494,8 @@ github.com/<span class="a">subhadeeproy3902</span>/pong-ball/releases</code></pr
     <div class="tab-panel" data-panel="macos">
       <div class="install-grid">
         <div class="block">
-          <div class="bt">Homebrew — add the tap <button class="copy" data-copy="brew tap subhadeeproy3902/pong-ball https://github.com/subhadeeproy3902/pong-ball">Copy</button></div>
-          <pre><code>brew tap <span class="a">subhadeeproy3902/pong-ball</span> https://github.com/subhadeeproy3902/pong-ball</code></pre>
-        </div>
-        <div class="block">
-          <div class="bt">Homebrew — install <button class="copy" data-copy="brew install subhadeeproy3902/pong-ball/pong-ball">Copy</button></div>
-          <pre><code>brew install <span class="a">subhadeeproy3902/pong-ball/pong-ball</span></code></pre>
+          <div class="bt">Homebrew — one command <button class="copy" data-copy="brew install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/Formula/pong-ball.rb">Copy</button></div>
+          <pre><code>brew install https://raw.githubusercontent.com/<span class="a">subhadeeproy3902</span>/pong-ball/main/Formula/pong-ball.rb</code></pre>
         </div>
       </div>
     </div>
@@ -509,6 +505,10 @@ github.com/<span class="a">subhadeeproy3902</span>/pong-ball/releases</code></pr
         <div class="block">
           <div class="bt">winget <button class="copy" data-copy="winget install pong-ball">Copy</button></div>
           <pre><code>winget install <span class="a">pong-ball</span></code></pre>
+        </div>
+        <div class="block">
+          <div class="bt">Chocolatey <button class="copy" data-copy="choco install pong-ball">Copy</button></div>
+          <pre><code>choco install <span class="a">pong-ball</span></code></pre>
         </div>
         <div class="block">
           <div class="bt">Scoop <button class="copy" data-copy="scoop install pong-ball">Copy</button></div>
@@ -570,7 +570,7 @@ go install github.com/<span class="a">subhadeeproy3902</span>/pong-ball@latest</
       </details>
       <details>
         <summary>How do I install it?</summary>
-        <p>On any OS with Go: <code>go install github.com/subhadeeproy3902/pong-ball@latest</code>. On Windows: <code>winget install pong-ball</code> or <code>scoop install pong-ball</code>. On macOS, tap the formula and <code>brew install subhadeeproy3902/pong-ball/pong-ball</code>. On Linux, run the <code>install.sh</code> one-liner. Prebuilt binaries and <code>.deb</code>/<code>.rpm</code>/<code>.apk</code> packages are on the releases page.</p>
+        <p>On any OS with Go: <code>go install github.com/subhadeeproy3902/pong-ball@latest</code>. On Windows: <code>winget install pong-ball</code>, <code>choco install pong-ball</code>, or <code>scoop install pong-ball</code>. On macOS, one command: <code>brew install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/Formula/pong-ball.rb</code>. On Linux, run the <code>install.sh</code> one-liner. Prebuilt binaries and <code>.deb</code>/<code>.rpm</code>/<code>.apk</code> packages are on the releases page.</p>
       </details>
       <details>
         <summary>Which operating systems are supported?</summary>

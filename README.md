@@ -51,6 +51,9 @@ pong-ball ships as a single static binary.
 # winget
 winget install pong-ball
 
+# Chocolatey
+choco install pong-ball
+
 # Scoop
 scoop install pong-ball
 ```
@@ -58,9 +61,8 @@ scoop install pong-ball
 ### macOS
 
 ```bash
-# Homebrew — add the tap, then install
-brew tap subhadeeproy3902/pong-ball https://github.com/subhadeeproy3902/pong-ball
-brew install subhadeeproy3902/pong-ball/pong-ball
+# Homebrew — one command, installs straight from the formula
+brew install https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/Formula/pong-ball.rb
 ```
 
 ### Linux / any OS

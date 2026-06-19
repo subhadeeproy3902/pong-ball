@@ -105,7 +105,7 @@ needs publishing (see §6–§7 and §8).
 | `brew install pong-ball` (no tap) | 🔒 gated | homebrew-core needs 30 forks / 30 watchers / 75 stars (see §6) |
 | `winget install pong-ball` | ⏳ [PR #390476](https://github.com/microsoft/winget-pkgs/pull/390476) | awaiting merge into `microsoft/winget-pkgs` |
 | `scoop install pong-ball` | ⏳ [PR #18079](https://github.com/ScoopInstaller/Extras/pull/18079) | awaiting merge into `ScoopInstaller/Extras` |
-| `choco install pong-ball` | ❌ not yet | push a `.nupkg` to the Chocolatey gallery |
+| `choco install pong-ball` | ✅ published (in moderation) | nothing — v1.0.0 pushed; the `chocolatey` CI job auto-publishes future tags |
 | `sudo apt/dnf/zypper/pacman/apk install pong-ball` | ❌ not yet | get into a distro repo or host an APT/RPM repo |
 | `pkg install pong-ball` (FreeBSD) | ❌ not yet | submit a FreeBSD port |
 | `sudo snap install pong-ball` / `flatpak install pong-ball` | ❌ not yet | publish to Snapcraft / Flathub |

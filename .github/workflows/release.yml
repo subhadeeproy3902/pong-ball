@@ -62,3 +62,41 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
+
+  # ── Chocolatey publish (its own Windows job) ────────────────────────────────
+  # The `choco` binary only ships on Windows runners, so the push can't live in
+  # the Ubuntu GoReleaser job above. This job waits for the release to exist,
+  # then packs chocolatey/pong-ball.nuspec for the tagged version and pushes it.
+  chocolatey:
+    name: Chocolatey
+    needs: release
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Pack & push Chocolatey package
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $version = "${{ github.ref_name }}".TrimStart('v')
+          $asset   = 'pong-ball_windows_amd64.zip'
+
+          # SHA-256 for the Windows zip, read from the release's checksums.txt
+          $checks = gh release download "v$version" --repo "${{ github.repository }}" --pattern 'checksums.txt' --output -
+          $line   = ($checks -split "`n") | Where-Object { $_ -match [regex]::Escape($asset) } | Select-Object -First 1
+          $sha    = ($line -split '\s+')[0]
+          if (-not $sha) { throw "Checksum for $asset not found in release v$version" }
+          Write-Host "pong-ball $version  sha256=$sha"
+
+          # Render the install script from the committed template
+          $tpl = Get-Content 'chocolatey/tools/chocolateyinstall.ps1.template' -Raw
+          $tpl = $tpl.Replace('__VERSION__', $version).Replace('__CHECKSUM64__', $sha)
+          Set-Content 'chocolatey/tools/chocolateyinstall.ps1' $tpl -Encoding UTF8
+
+          choco pack 'chocolatey/pong-ball.nuspec' --version $version --outputdirectory chocolatey
+          choco push "chocolatey/pong-ball.$version.nupkg" --source 'https://push.chocolatey.org/' --api-key $env:CHOCOLATEY_API_KEY

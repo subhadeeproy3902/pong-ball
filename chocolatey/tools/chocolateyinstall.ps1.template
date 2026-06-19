@@ -1,0 +1,17 @@
+$ErrorActionPreference = 'Stop'
+
+# This file is a template. The release pipeline (and the one-time bootstrap)
+# substitute __VERSION__ and __CHECKSUM64__ with the real values for each tag,
+# then write the result to chocolateyinstall.ps1 before `choco pack`.
+
+$packageName = 'pong-ball'
+$toolsDir    = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+$version     = '__VERSION__'
+$url64       = "https://github.com/subhadeeproy3902/pong-ball/releases/download/v$version/pong-ball_windows_amd64.zip"
+
+Install-ChocolateyZipPackage `
+  -PackageName    $packageName `
+  -Url64bit       $url64 `
+  -UnzipLocation  $toolsDir `
+  -Checksum64     '__CHECKSUM64__' `
+  -ChecksumType64 'sha256'

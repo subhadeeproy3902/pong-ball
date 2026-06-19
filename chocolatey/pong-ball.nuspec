@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>pong-ball</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/subhadeeproy3902/pong-ball/tree/main/chocolatey</packageSourceUrl>
+    <owners>subhadeeproy3902</owners>
+    <title>Pong Ball</title>
+    <authors>Subhadeep Roy</authors>
+    <projectUrl>https://github.com/subhadeeproy3902/pong-ball</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/subhadeeproy3902/pong-ball/main/assets/icon-512.png</iconUrl>
+    <copyright>2026 Subhadeep Roy</copyright>
+    <licenseUrl>https://github.com/subhadeeproy3902/pong-ball/blob/main/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/subhadeeproy3902/pong-ball</projectSourceUrl>
+    <docsUrl>https://github.com/subhadeeproy3902/pong-ball#readme</docsUrl>
+    <bugTrackerUrl>https://github.com/subhadeeproy3902/pong-ball/issues</bugTrackerUrl>
+    <tags>pong ball game terminal tui cli arcade physics golang</tags>
+    <summary>A minimalist physics-based terminal Pong game</summary>
+    <description>
+**pong-ball** is a minimalist, physics-based Pong game for the terminal.
+
+- Sub-stepped continuous collision physics — the ball never tunnels through walls, even at top speed
+- A spring-driven paddle you steer with the keyboard or the mouse
+- Five restrained themes, three game modes, six power-ups, five difficulty phases
+- A persistent local score history with an in-game leaderboard
+- Pure Go, a single static binary, zero runtime dependencies
+
+This package installs the official `pong-ball.exe` from the project's signed GitHub release and verifies its SHA-256 checksum.
+    </description>
+    <releaseNotes>https://github.com/subhadeeproy3902/pong-ball/releases</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
