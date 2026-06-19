@@ -19,3 +19,5 @@ tools/*_preview.html
 .DS_Store
 Thumbs.db
 tools/t_*.html
+
+.env
