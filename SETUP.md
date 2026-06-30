@@ -103,7 +103,7 @@ needs publishing (see §6–§7 and §8).
 | download `.deb` / `.rpm` / `.apk` from Releases | ✅ works | nothing — GoReleaser builds them |
 | `brew install subhadeeproy3902/pong-ball/pong-ball` (tap) | ✅ works | nothing — tap is live (see §6) |
 | `brew install pong-ball` (no tap) | 🔒 gated | homebrew-core needs 30 forks / 30 watchers / 75 stars (see §6) |
-| `winget install pong-ball` | ⏳ [PR #390476](https://github.com/microsoft/winget-pkgs/pull/390476) | awaiting merge into `microsoft/winget-pkgs` |
+| `winget install pong-ball` | ✅ [PR #390476](https://github.com/microsoft/winget-pkgs/pull/390476) | awaiting merge into `microsoft/winget-pkgs` |
 | `scoop install pong-ball` (after `scoop bucket add`) | ✅ works | project bucket is live in this repo |
 | `scoop install pong-ball` (bare, via Extras) | 🔒 gated | Extras requires 100★/50 forks ([PR #18079](https://github.com/ScoopInstaller/Extras/pull/18079)) |
 | `choco install pong-ball` | ✅ published (in moderation) | nothing — v1.0.0 pushed; the `chocolatey` CI job auto-publishes future tags |
